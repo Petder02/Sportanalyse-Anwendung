@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <title>Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
 
+<style>
+    .text-center {
+        text-align : center;
+    }
+
+    .default-fonts {
+        font-family : sans-serif, roberto;
+    }
+
+    .img-center {
+        display : block;
+        margin-left : auto;
+        margin-right : auto;
+        width : auto;
+    }
+</style>
+
+
+<body>
+    <br>
+    <h1 class = 'text-center default-fonts'><b>Sports Master</b></h1>
+    <br>
+    <p class = 'text-center default-fonts'>Advanced Analytics, Advanced Insights</p>
+    <br>
+    <div class='container'>
+        <div class="row">
+            <div class='col-md-3 card mr-auto mx-auto' id="american-football">
+                <div class="card-body">
+                    <img class="img-center" src="images/american-football.png" width="128" height="128" alt="American Football">
+                    <br>
+                    <p class="text-center default-fonts">American Football</p>
+                </div>
+            </div>
+            <div class='col-md-3 card mr-auto mx-auto' id="basketball">
+                <div class="card-body">
+                    <img class="img-center" src="images/basketball-ball.png" width="128" height="128" alt="Basketball">
+                    <br>
+                    <p class="text-center default-fonts">Basketball</p>
+                </div>
+            </div>
+            <div class='col-md-3 card mr-auto mx-auto' id="baseball">
+                <div class="card-body">
+                    <img class="img-center" src="images/baseball.png" width="128" height="128" alt="Baseball">
+                    <br>
+                    <p class="text-center default-fonts">Baseball</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

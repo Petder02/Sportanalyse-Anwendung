@@ -1,3 +1,4 @@
+/*
 const http = require("https");
 
 const options = {
@@ -26,3 +27,25 @@ const req = http.request(options, function (res) {
 });
 
 req.end();
+*/
+
+const request = require('request');
+
+const options = {
+    method: 'GET',
+    url: 'https://nfl-team-stats.p.rapidapi.com/v1/nfl-stats/teams/receiving-stats/offense/2022',
+    headers: {
+        'X-RapidAPI-Key': 'ed1a064420msh29fd9395b8669cfp1c89e9jsn5ff6eef88795',
+        'X-RapidAPI-Host': 'nfl-team-stats.p.rapidapi.com',
+        useQueryString: true
+    }
+};
+
+let data = null;
+
+request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    console.log(body);
+    data = JSON.parse(body);
+    console.log(data['_embedded'].teamReceivingStatsList);
+});

@@ -13,7 +13,7 @@
     }
 
     .default-fonts {
-        font-family : sans-serif, roberto;
+        font-family: sans-serif, roberto;
     }
 
     .img-center {
@@ -35,42 +35,72 @@
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
     }
+
+    #american-football.card:hover {
+        background-color: saddlebrown;
+    }
+
+    #basketball.card:hover {
+        background-color: orange;
+    }
+
+    #baseball.card:hover {
+        background-color: lawngreen;
+    }
 </style>
+
+<script>
+    function darkMode() {
+        //Should change the colors of items on the page once implemented
+        //Should also substitute the button with a 'light-mode' one that is white
+        //TODO: Justin -> Implement this function
+        console.log("Should turn everything dark eventually");
+    }
+</script>
 
 
 <body style="background-color: lightgray;">
     <div class='container-fluid'>
+        <!-- Header and Dark Mode -->
         <br>
-        <button type="button" class="btn btn-dark btn-lg default-fonts float-end">Dark Mode</button>
-        <br>
-        <br>
-        <br>
+        <button type="button" class="btn btn-dark btn-lg default-fonts float-end" onclick="darkMode()">Dark Mode</button>
+        <br style="display: block; content: ''; margin-top: 50px;">
         <h1 class="text-center default-fonts">
             <span class='text-center default-fonts'><b>Sports Master</b></span>
         </h1>
         <br>
         <p class = 'text-center default-fonts'>Advanced Analytics, Advanced Insights</p>
         <br>
+        <!-- Sports Page Buttons -->
         <div class="row">
+            <!-- Football -->
             <div class='col-md-3 card border border-dark mr-auto mx-auto' id="american-football">
                 <div class="card-body">
                     <img class="img-center" src="images/american-football.png" width="128" height="128" alt="American Football">
                     <br>
-                    <p class="text-center default-fonts">American Football</p>
+                    <h3 class="text-center default-fonts">American Football</h3>
+                    <!-- Dummy link, add analytics page link here when finished -->
+                    <a href="#" class="stretched-link"></a>
                 </div>
             </div>
+            <!-- Basketball -->
             <div class='col-md-3 card border border-dark mr-auto mx-auto' id="basketball">
                 <div class="card-body">
                     <img class="img-center" src="images/basketball-ball.png" width="128" height="128" alt="Basketball">
                     <br>
-                    <p class="text-center default-fonts">Basketball</p>
+                    <h3 class="text-center default-fonts">Basketball</h3>
+                    <!-- Dummy link, add analytics page link here when finished -->
+                    <a href="#" class="stretched-link"></a>
                 </div>
             </div>
+            <!-- Baseball -->
             <div class='col-md-3 card border border-dark mr-auto mx-auto' id="baseball">
                 <div class="card-body">
                     <img class="img-center" src="images/baseball.png" width="128" height="128" alt="Baseball">
                     <br>
-                    <p class="text-center default-fonts">Baseball</p>
+                    <h3 class="text-center default-fonts">Baseball</h3>
+                    <!-- Dummy link, add analytics page link here when finished -->
+                    <a href="#" class="stretched-link"></a>
                 </div>
             </div>
         </div>

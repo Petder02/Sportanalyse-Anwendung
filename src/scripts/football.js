@@ -54,5 +54,12 @@ function getTeamData(type='receiving', side='offense', year='2022') {
         .catch(err => console.error('error:' + err));
 }
 
+/**
+ * Gets player data from the A (https://rapidapi.com/DathanStoneDev/api/nfl-team-stats)
+ * @param name  the name of
+ */
+function getPlayerData() {
+    //TODO: Find an API in which this can be reasonably implemented with
+}
 
 //console.log(getTeamData(type='rushing'));

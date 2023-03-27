@@ -48,9 +48,11 @@ function getTeamData(type='receiving', side='offense', year='2022') {
                 default:
                     console.error("Invalid endpoint");
             }
+            //TODO -> Determine what to do with this data
             console.log(teamStatsList);
         })
         .catch(err => console.error('error:' + err));
 }
+
 
 //console.log(getTeamData(type='rushing'));

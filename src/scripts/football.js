@@ -1,51 +1,56 @@
-/*
-const http = require("https");
+/**
+ * Gets team data from the NFL Team Stats API (https://rapidapi.com/DathanStoneDev/api/nfl-team-stats)
+ * @param type  the type of stats to get (receiving, rushing, passing, or win or the valid options)
+ * @param side  the team side to get stats for (defense, offense)
+ * @param year  the year to get stats from
+ */
+function getTeamData(type='receiving', side='offense', year='2022') {
+    const fetch = require('node-fetch');
 
-const options = {
-    "method": "GET",
-    "hostname": "nfl-team-stats.p.rapidapi.com",
-    "port": null,
-    "path": "/v1/nfl-stats/teams/passing-stats/offense/2021",
-    "headers": {
-        "X-RapidAPI-Key": "dd7eac4825msh896dbd0a91bacfbp1bd84fjsn6521550eb446",
-        "X-RapidAPI-Host": "nfl-team-stats.p.rapidapi.com",
-        "useQueryString": true
+    //Error checking + getting the url based on the request
+    let url = null;
+    if (type === 'receiving' || type === 'rushing' || type === 'passing') {
+        url = `https://nfl-team-stats.p.rapidapi.com/v1/nfl-stats/teams/${type}-stats/${side}/${year}`;
     }
-};
-
-const req = http.request(options, function (res) {
-    const chunks = [];
-
-    res.on("data", function (chunk) {
-        chunks.push(chunk);
-    });
-
-    res.on("end", function () {
-        const body = Buffer.concat(chunks);
-        console.log(body.toString())
-    });
-});
-
-req.end();
-*/
-
-const request = require('request');
-
-const options = {
-    method: 'GET',
-    url: 'https://nfl-team-stats.p.rapidapi.com/v1/nfl-stats/teams/receiving-stats/offense/2022',
-    headers: {
-        'X-RapidAPI-Key': 'ed1a064420msh29fd9395b8669cfp1c89e9jsn5ff6eef88795',
-        'X-RapidAPI-Host': 'nfl-team-stats.p.rapidapi.com',
-        useQueryString: true
+    else if (type === 'win') {
+        url = `https://nfl-team-stats.p.rapidapi.com/v1/nfl-stats/teams/${type}-stats/${year}`;
     }
-};
+    else {
+        console.error('Invalid type (no available endpoint)');
+    }
 
-let data = null;
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'ed1a064420msh29fd9395b8669cfp1c89e9jsn5ff6eef88795',
+            'X-RapidAPI-Host': 'nfl-team-stats.p.rapidapi.com'
+        }
+    };
 
-request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-    console.log(body);
-    data = JSON.parse(body);
-    console.log(data['_embedded'].teamReceivingStatsList);
-});
+    fetch(url, options)
+        .then(res => res.json())
+        .then((data) => {
+            //Get the first parameter of the object
+            let teamStatsList = null;
+            switch (type) {
+                case 'receiving':
+                    teamStatsList = data['_embedded']['teamReceivingStatsList'];
+                    break;
+                case 'rushing':
+                    teamStatsList = data['_embedded']['teamRushingStatsList'];
+                    break;
+                case 'passing':
+                    teamStatsList = data['_embedded']['teamPassingStatsList'];
+                    break;
+                case 'win':
+                    teamStatsList = data['_embedded']['teamWinStatsList'];
+                    break;
+                default:
+                    console.error("Invalid endpoint");
+            }
+            console.log(teamStatsList);
+        })
+        .catch(err => console.error('error:' + err));
+}
+
+//console.log(getTeamData(type='rushing'));

@@ -3,8 +3,9 @@
  * @param type  the type of stats to get (receiving, rushing, passing, or win or the valid options)
  * @param side  the team side to get stats for (defense, offense)
  * @param year  the year to get stats from
+ * @param team  the team to get stats for
  */
-function getTeamData(type='receiving', side='offense', year='2022') {
+function getTeamData(type='receiving', side='offense', year='2022', team='Jets') {
     const fetch = require('node-fetch');
 
     //Error checking + getting the url based on the request
@@ -49,10 +50,16 @@ function getTeamData(type='receiving', side='offense', year='2022') {
                     console.error("Invalid endpoint");
             }
             //TODO -> Determine what to do with this data
+            for(let x in teamStatsList) {
+                if(teamStatsList[x].name === team)
+                    console.log(teamStatsList[x]);
+            }
             console.log(teamStatsList);
         })
         .catch(err => console.error('error:' + err));
 }
+
+getTeamData(type='receiving', side='offense', year='2022', team='Jets');
 
 /**
  * Gets player data from the A (https://rapidapi.com/DathanStoneDev/api/nfl-team-stats)

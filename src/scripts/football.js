@@ -59,14 +59,23 @@ function getTeamData(type='receiving', side='offense', year='2022', team='Jets')
         .catch(err => console.error('error:' + err));
 }
 
-getTeamData(type='receiving', side='offense', year='2022', team='Jets');
+//getTeamData(type='receiving', side='offense', year='2022', team='Jets');
 
 /**
- * Gets player data from the A (https://rapidapi.com/DathanStoneDev/api/nfl-team-stats)
- * @param name  the name of
+ * Gets player data from the AllSportsAPI (https://rapidapi.com/DathanStoneDev/api/nfl-team-stats)
+ * @param name  the name of the player to get data on
+ * TODO: Determine how to do this in one call rather than 3
  */
-function getPlayerData() {
-    //TODO: Find an API in which this can be reasonably implemented with
+function getPlayerData(name) {
+    //Three calls required per player:
+        //Call 1 -> Searching for the player's ID
+        //Call 2 -> Searching for the player's regular season stats
+        //Call 3 -> Searching for the player's playoff season stats
+
+    //TODO: Find an API that provides (a) player statistics by season and (b) a search feature for those players
+    //TODO: You would think this would not be that hard. You would be wrong
 }
+
+getPlayerData("tom brady");
 
 //console.log(getTeamData(type='rushing'));

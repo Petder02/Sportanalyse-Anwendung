@@ -66,16 +66,30 @@ function getTeamData(type='receiving', side='offense', year='2022', team='Jets')
  * @param name  the name of the player to get data on
  * TODO: Determine how to do this in one call rather than 3
  */
-function getPlayerData(name) {
+function getPlayerData(season, team) {
     //Three calls required per player:
-        //Call 1 -> Searching for the player's ID
-        //Call 2 -> Searching for the player's regular season stats
-        //Call 3 -> Searching for the player's playoff season stats
+    //Call 1 -> Searching for the player's ID
+    //Call 2 -> Searching for the player's regular season stats
+    //Call 3 -> Searching for the player's playoff season stats
 
-    //TODO: Find an API that provides (a) player statistics by season and (b) a search feature for those players
-    //TODO: You would think this would not be that hard. You would be wrong
+    const fdClientModule = require('fantasydata-node-client');
+    const keys = {
+        'NFLv3StatsClient': '9a89010dda0643388baf8867abb798df',
+    };
+    const FantasyDataClient = new fdClientModule(keys);
+
+    FantasyDataClient.NFLv3StatsClient.getPlayerSeasonStatsByTeamPromise(season, team)
+        .then((resp) => {
+            let data = JSON.parse(resp);
+            console.log(data.length);
+            console.log(typeof(data));
+            console.log(data);
+        })
+        .catch((err) => {
+            console.error("And error has occurred -> " + err)
+        });
 }
 
-getPlayerData("tom brady");
+getPlayerData('2021REG', "CIN");
 
 //console.log(getTeamData(type='rushing'));

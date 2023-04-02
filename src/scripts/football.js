@@ -80,14 +80,41 @@ function getPlayerData(season, team) {
 
     FantasyDataClient.NFLv3StatsClient.getPlayerSeasonStatsByTeamPromise(season, team)
         .then((resp) => {
-            let data = JSON.parse(resp);
-            console.log(data.length);
-            console.log(typeof(data));
-            console.log(data);
+            let players = JSON.parse(resp);
+            for (let i = 0; i < players.length; i++) {
+                removeUnneededPlayerData(players[i]);
+            }
+            console.log(players[20]);
         })
         .catch((err) => {
             console.error("And error has occurred -> " + err)
         });
+}
+
+/**
+ * Removes unnecessary fields from the returned player stats data
+ * @param player  the player to delete data from
+ */
+function removeUnneededPlayerData(player) {
+    delete player['SeasonType'];
+    delete player['FantasyPoints'];
+    delete player['FantasyPointsPPR'];
+    delete player['FantasyPosition'];
+    delete player['Temperature'];
+    delete player['Humidity'];
+    delete player['WindSpeed'];
+    delete player['AuctionValue'];
+    delete player['AuctionValuePPR'];
+    delete player['FantasyPointsFanDuel'];
+    delete player['FantasyPointsDraftKings'];
+    delete player['FantasyPointsYahoo'];
+    delete player['AverageDraftPosition'];
+    delete player['AverageDraftPositionPPR'];
+    delete player['FantasyPointsFantasyDraft'];
+    delete player['AverageDraftPositionRookie'];
+    delete player['AverageDraftPositionDynasty'];
+    delete player['AverageDraftPosition2QB'];
+    delete player['ScoringDetails'];
 }
 
 getPlayerData('2021REG', "CIN");

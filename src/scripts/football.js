@@ -1,5 +1,6 @@
 /**
  * Gets team data from the NFL Team Stats API (https://rapidapi.com/DathanStoneDev/api/nfl-team-stats)
+ * @deprecated This is a legacy function, do not use it
  * @param type  the type of stats to get (receiving, rushing, passing, or win or the valid options)
  * @param side  the team side to get stats for (defense, offense)
  * @param year  the year to get stats from
@@ -59,8 +60,6 @@ function getTeamDataLegacy(type='receiving', side='offense', year='2022', team='
         .catch(err => console.error('error:' + err));
 }
 
-//getTeamData(type='receiving', side='offense', year='2022', team='Jets');
-
 /**
  * Gets player data from the Sports.io API and reads it into a database
  * @param season
@@ -76,7 +75,8 @@ function getPlayerData(season, team) {
 
     FantasyDataClient.NFLv3StatsClient.getPlayerSeasonStatsByTeamPromise(season, team)
         .then((resp) => {
-            let players = JSON.parse(resp);
+            //You must work with the response (resp) in this callback function. It cannot be used outside the function.
+            let players = JSON.parse(resp); // <- This is an array of JSON instances. Each instance is a player from the team (see team parameter) with stats from a given season (see season parameter). The amount of players will depend on the team.
             for (const player of players) {
                 removeUnneededPlayerData(player);
             }
@@ -126,7 +126,8 @@ function getTeamData(season) {
 
     FantasyDataClient.NFLv3StatsClient.getTeamSeasonStatsPromise(season)
         .then((resp) => {
-            let teams = JSON.parse(resp);
+            //You must work with the response (resp) in this callback function. It cannot be used outside the function.
+            let teams = JSON.parse(resp); // <- This is an array of JSON instances. Each instance is a team with their statistics from a given season (see season parameter). There are 32 items in this array cause there are 32 NFL teams.
             console.log(teams);
         })
         .catch((err) => {
@@ -135,5 +136,9 @@ function getTeamData(season) {
 }
 
 //Testing
-getPlayerData('2021REG', "CIN");
+/*
+Two example calls to the functions. Make sure to only use these when you are testing because they use up calls
+If we ever run out of calls, let me know and I will generate a new API key
+ */
+//getPlayerData('2021REG', "CIN");
 //getTeamData("2021REG");

@@ -5,7 +5,7 @@
  * @param year  the year to get stats from
  * @param team  the team to get stats for
  */
-function getTeamData(type='receiving', side='offense', year='2022', team='Jets') {
+function getTeamDataLegacy(type='receiving', side='offense', year='2022', team='Jets') {
     const fetch = require('node-fetch');
 
     //Error checking + getting the url based on the request
@@ -62,16 +62,12 @@ function getTeamData(type='receiving', side='offense', year='2022', team='Jets')
 //getTeamData(type='receiving', side='offense', year='2022', team='Jets');
 
 /**
- * Gets player data from the AllSportsAPI (https://rapidapi.com/DathanStoneDev/api/nfl-team-stats)
- * @param name  the name of the player to get data on
- * TODO: Determine how to do this in one call rather than 3
+ * Gets player data from the Sports.io API and reads it into a database
+ * @param season
+ * @param team
+ * TODO: Read this into a database once it is made
  */
 function getPlayerData(season, team) {
-    //Three calls required per player:
-    //Call 1 -> Searching for the player's ID
-    //Call 2 -> Searching for the player's regular season stats
-    //Call 3 -> Searching for the player's playoff season stats
-
     const fdClientModule = require('fantasydata-node-client');
     const keys = {
         'NFLv3StatsClient': '9a89010dda0643388baf8867abb798df',
@@ -81,10 +77,10 @@ function getPlayerData(season, team) {
     FantasyDataClient.NFLv3StatsClient.getPlayerSeasonStatsByTeamPromise(season, team)
         .then((resp) => {
             let players = JSON.parse(resp);
-            for (let i = 0; i < players.length; i++) {
-                removeUnneededPlayerData(players[i]);
+            for (const player of players) {
+                removeUnneededPlayerData(player);
             }
-            console.log(players[20]);
+            console.log(players);
         })
         .catch((err) => {
             console.error("And error has occurred -> " + err)
@@ -117,6 +113,27 @@ function removeUnneededPlayerData(player) {
     delete player['ScoringDetails'];
 }
 
-getPlayerData('2021REG', "CIN");
+/**
+ * Gets all team data from the Sports.io API and reads it into a database
+ * @param season
+ */
+function getTeamData(season) {
+    const fdClientModule = require('fantasydata-node-client');
+    const keys = {
+        'NFLv3StatsClient': '9a89010dda0643388baf8867abb798df',
+    };
+    const FantasyDataClient = new fdClientModule(keys);
 
-//console.log(getTeamData(type='rushing'));
+    FantasyDataClient.NFLv3StatsClient.getTeamSeasonStatsPromise(season)
+        .then((resp) => {
+            let teams = JSON.parse(resp);
+            console.log(teams);
+        })
+        .catch((err) => {
+            console.error("And error has occurred -> " + err)
+        });
+}
+
+//Testing
+getPlayerData('2021REG', "CIN");
+//getTeamData("2021REG");

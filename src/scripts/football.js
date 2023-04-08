@@ -60,6 +60,7 @@ function getTeamDataLegacy(type='receiving', side='offense', year='2022', team='
         .catch(err => console.error('error:' + err));
 }
 
+let playerData;
 /**
  * Gets player data from the Sports.io API and reads it into a database
  * @param season
@@ -80,7 +81,8 @@ function getPlayerData(season, team) {
             for (const player of players) {
                 removeUnneededPlayerData(player);
             }
-            console.log(players);
+            playerData = players;
+            //console.log(players);
         })
         .catch((err) => {
             console.error("And error has occurred -> " + err)

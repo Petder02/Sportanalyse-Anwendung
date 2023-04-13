@@ -155,10 +155,10 @@ function postTeamToMongoDB(team, db) {
     db.collection('teams')
         .replaceOne(team, team, {upsert : true})
         .then(() => {
-            console.log("Successfully inserted team with abbreviation -> " + team);
+            console.log("Successfully inserted team with abbreviation -> " + team["Team"]);
         })
         .catch(err => {
-            console.error('Error inserting team with abbreviation -> ' + team, err);
+            console.error('Error inserting team with abbreviation -> ' + team["Team"], err);
         });
 }
 
@@ -234,10 +234,10 @@ async function batchUpdateTeamData(startSeason, endSeason, timeDelay=1000) {
     for (let i = startSeason; i <= endSeason; i++) {
         seasons.push(currSeason++);
     }
-    seasons.forEach((season) => {
+    seasons.forEach((season, index) => {
         setTimeout((() => {
             postTeamData(`${season}REG`);
-        }), timeDelay);
+        }), timeDelay * (index + 1));
         console.log(`${season} Data Added!`);
     });
 }
@@ -305,6 +305,3 @@ function removeUnneededPlayerData(player) {
     delete player['AverageDraftPosition2QB'];
     delete player['ScoringDetails'];
 }
-
-//Function Testing!
-//batchUpdatePlayerData(2018, 2019, 5000);

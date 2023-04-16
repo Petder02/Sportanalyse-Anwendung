@@ -188,6 +188,88 @@ module.exports = {
             }), timeDelay * (index + 1));
             console.log(`${season} Data Added!`);
         });
+    },
+    /**
+     * Removes duplicates from the player table
+     * @returns {Promise<void>}
+     */
+    deleteDuplicatePlayers: () => {
+        const uri = 'mongodb+srv://sportanalyticapp:csdsapp393@cluster0.cmo9onq.mongodb.net/?retryWrites=true&w=majority'
+        MongoClient.connect(uri).then(client => {
+            const db = client.db('american_football')
+            db.collection('players').aggregate([
+                {
+                    $group: {
+                        _id: {PlayerID: "$PlayerID", Season: "$Season"},
+                        _idsNeedToBeDeleted: {$push: "$$ROOT._id"}
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        _idsNeedToBeDeleted: { $slice: [ "$_idsNeedToBeDeleted", 1, {$size : "$_idsNeedToBeDeleted"}]}
+
+                    }
+                },
+                {
+                    $unwind: "$_idsNeedToBeDeleted"
+                },
+                {
+                    $group: { _id: "", _idsNeedToBeDeleted: { $push: "$_idsNeedToBeDeleted"}}
+                },
+                {
+                    $project: {_id: 0}
+                }
+            ]).toArray().then(result => {
+                let idsToDelete = result[0]["_idsNeedToBeDeleted"]
+                console.log(idsToDelete)
+                idsToDelete.forEach(id => db.collection('players').deleteOne({_id: id}))
+                console.log("Deletion Complete")
+            }).catch(() => console.log("No duplicates found!"))
+        }).catch(err => {
+            console.log("An error has occurred -> " + err)
+        })
+    },
+    /**
+     * Removes duplicates from the teams table
+     * @returns {Promise<void>}
+     */
+    deleteDuplicateTeams: () => {
+        const uri = 'mongodb+srv://sportanalyticapp:csdsapp393@cluster0.cmo9onq.mongodb.net/?retryWrites=true&w=majority'
+        MongoClient.connect(uri).then(client => {
+            const db = client.db('american_football')
+            db.collection('teams').aggregate([
+                {
+                    $group: {
+                        _id: {TeamID: "$TeamID", Season: "$Season"},
+                        _idsNeedToBeDeleted: {$push: "$$ROOT._id"}
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        _idsNeedToBeDeleted: { $slice: [ "$_idsNeedToBeDeleted", 1, {$size : "$_idsNeedToBeDeleted"}]}
+
+                    }
+                },
+                {
+                    $unwind: "$_idsNeedToBeDeleted"
+                },
+                {
+                    $group: { _id: "", _idsNeedToBeDeleted: { $push: "$_idsNeedToBeDeleted"}}
+                },
+                {
+                    $project: {_id: 0}
+                }
+            ]).toArray().then(result => {
+                let idsToDelete = result[0]["_idsNeedToBeDeleted"]
+                console.log(idsToDelete)
+                idsToDelete.forEach(id => db.collection('teams').deleteOne({_id: id}))
+                console.log("Deletion Complete")
+            }).catch(() => console.log("No duplicates found!"))
+        }).catch(err => {
+            console.log("An error has occurred -> " + err)
+        })
     }
 
 }

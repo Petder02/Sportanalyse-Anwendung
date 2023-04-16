@@ -160,7 +160,7 @@ module.exports = {
                         setTimeout((() => {
                             let abbreviation = team['Key'];
                             console.log(abbreviation);
-                            module.exports.postPlayerData(regSeason, abbreviation).catch((err) => "An error occurred -> " + err);
+                            module.exports.postPlayerData(regSeason, abbreviation)
                             console.log(`Posted player data for ${abbreviation} ${regSeason}`);
                         }), (index + 1) * timeDelay);
                     })

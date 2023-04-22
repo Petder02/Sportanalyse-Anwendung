@@ -76,7 +76,7 @@ function DataLoader({
           setLoadingError={setLoadingError}
         />
       ),
-      message: 'You can load tabular (TSV, CSV, DSV) or JSON data.',
+      message: 'Please upload tabular CSV data.',
       icon: BsUpload,
       allowedForReplace: true,
     },

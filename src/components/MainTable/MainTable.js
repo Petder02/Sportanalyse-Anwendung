@@ -73,24 +73,19 @@ export default function MainTable() {
                         footer: props => props.column.id
                     },
                     {
-                        header: "More Info",
-                        columns: [
-                            {
-                                accessorKey: "visits",
-                                header: () => <span>Visits</span>,
-                                footer: props => props.column.id
-                            },
-                            {
-                                accessorKey: "status",
-                                header: "Status",
-                                footer: props => props.column.id
-                            },
-                            {
-                                accessorKey: "progress",
-                                header: "Profile Progress",
-                                footer: props => props.column.id
-                            }
-                        ]
+                        accessorKey: "visits",
+                        header: () => <span>Visits</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "status",
+                        header: "Status",
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "progress",
+                        header: "Profile Progress",
+                        footer: props => props.column.id
                     }
                 ]
             }
@@ -119,14 +114,14 @@ export default function MainTable() {
 
     return (
         <div className="p-2">
-            <div>
+            {/*<div>
                 <input
                     value={globalFilter ?? ""}
                     onChange={e => setGlobalFilter(e.target.value)}
                     className="p-2 font-lg shadow border border-block"
                     placeholder="Search all columns..."
                 />
-            </div>
+            </div>*/}
             <div className="h-2" />
             <table>
                 <thead>
@@ -256,11 +251,11 @@ export default function MainTable() {
             </div>
             <hr />
             <br />
-            <div>
+            {/*<div>
                 <button className="border rounded p-2 mb-2" onClick={() => rerender()}>
                     Force Rerender
                 </button>
-            </div>
+            </div>*/}
             <div>
                 <button
                     className="border rounded p-2 mb-2"
@@ -270,12 +265,12 @@ export default function MainTable() {
                 </button>
             </div>
             <div>
-                <button
+                {/*<button
                     className="border rounded p-2 mb-2"
                     onClick={() => console.info("rowSelection", rowSelection)}
                 >
                     Log `rowSelection` state
-                </button>
+                </button>*/}
             </div>
             <div>
                 <button

@@ -133,17 +133,17 @@
   &.unsorted {
     &:after {
       opacity: 0.3;
-      background-image: url('icons/arrow-down-up.svg');
+      background-image: url('./icons/arrow-down-up.svg');
     }
   }
   &.acs {
     &:after {
-      background-image: url('icons/arrow-up.svg');
+      background-image: url('./icons/arrow-up.svg');
     }
   }
   &.desc {
     &:after {
-      background-image: url('icons/arrow-down.svg');
+      background-image: url('./icons/arrow-down.svg');
     }
   }
 }

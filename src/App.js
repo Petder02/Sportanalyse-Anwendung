@@ -261,6 +261,7 @@ function App() {
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
+      <MainTable></MainTable>
       <CustomChartWarnModal
         toConfirmCustomChart={toConfirmCustomChart}
         confirmCustomChartLoad={confirmCustomChartLoad}
@@ -335,7 +336,6 @@ function App() {
         >
         </CookieConsent>
       </div>
-      <MainTable></MainTable>
       <ScreenSizeAlert />
     </div>
   )

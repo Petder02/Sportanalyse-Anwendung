@@ -4,19 +4,28 @@ import styles from './DataSamples.module.scss'
 
 const samplesList = [
   {
+    name: 'selected_data',
+    category: 'Bar chart', 'Line chart',
+    url:
+        './sample-datasets/selected_data.tsv',
+    delimiter: '\t',
+    sourceName: 'user of application',
+    sourceURL: '',
+  },
+  {/* {
     name: 'Hate crimes in New York',
     category: 'Alluvial Diagram',
     url: './sample-datasets/Alluvial diagram - Hate crimes in New York.tsv',
     delimiter: '\t',
     sourceName: 'NYC Open Data',
     sourceURL:
-      'https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78',
+        'https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78',
   },
   {
     name: 'Lannister vs Starck relationships',
     category: 'Arc diagrams',
     url:
-      './sample-datasets/Arc diagrams - Lannister vs Starck relationships.tsv',
+        './sample-datasets/Arc diagrams - Lannister vs Starck relationships.tsv',
     delimiter: '\t',
     sourceName: 'T. Breid via Kaggle',
     sourceURL: 'https://www.kaggle.com/theobreid/got-data',
@@ -28,7 +37,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'Eurostat',
     sourceURL:
-      'https://ec.europa.eu/eurostat/databrowser/bookmark/d84c6140-ed7e-443e-baf9-918679862d58?lang=en',
+        'https://ec.europa.eu/eurostat/databrowser/bookmark/d84c6140-ed7e-443e-baf9-918679862d58?lang=en',
   },
 
   {
@@ -38,18 +47,18 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'NYC Open Data',
     sourceURL:
-      'https://data.ny.gov/w/gkgz-nw24/caer-yrtv?cur=S3JXBWlXCbs&from=SAa8_R9mOdD',
+        'https://data.ny.gov/w/gkgz-nw24/caer-yrtv?cur=S3JXBWlXCbs&from=SAa8_R9mOdD',
   },
 
   {
     name: 'Temperature in Paris during the World War II',
     category: 'Contour plot',
     url:
-      './sample-datasets/Contour plot - Mean temperature in Paris 1944-1945.tsv',
+        './sample-datasets/Contour plot - Mean temperature in Paris 1944-1945.tsv',
     delimiter: '\t',
     sourceName: 'NOAA',
     sourceURL:
-      'https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/world-war-ii-era-data',
+        'https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/world-war-ii-era-data',
   },
 
   {
@@ -59,7 +68,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'Wikipedia',
     sourceURL:
-      'https://en.wikipedia.org/w/index.php?title=List_of_highest-grossing_films&oldid=1023491946',
+        'https://en.wikipedia.org/w/index.php?title=List_of_highest-grossing_films&oldid=1023491946',
   },
 
   {
@@ -69,7 +78,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'Comune di Milano',
     sourceURL:
-      'https://dati.comune.milano.it/dataset/ds74-popolazione-residenti-stranieri-cittadinanza',
+        'https://dati.comune.milano.it/dataset/ds74-popolazione-residenti-stranieri-cittadinanza',
   },
 
   {
@@ -79,7 +88,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'Wikidata',
     sourceURL:
-      'https://query.wikidata.org/#SELECT%20%3Fitem%20%3FitemLabel%20%3Fpopulation%20%3Fcountry%20%3FcountryLabel%20%3Fcontinent%20%3FcontinentLabel%0AWHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ1637706%20.%20%23%20get%20things%20that%20are%20bands%0A%20%20%3Fitem%20wdt%3AP1082%20%3Fpopulation%20.%0A%20%20%23%3Fitems%20wdt%3AP571%20%3Fdate%20.%20%23%20get%20the%20date%20when%20the%20band%20was%20founded%0A%20%20%3Fitem%20wdt%3AP17%20%3Fcountry%20.%0A%20%20%3Fcountry%20wdt%3AP30%20%3Fcontinent%20.%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D%0A',
+        'https://query.wikidata.org/#SELECT%20%3Fitem%20%3FitemLabel%20%3Fpopulation%20%3Fcountry%20%3FcountryLabel%20%3Fcontinent%20%3FcontinentLabel%0AWHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ1637706%20.%20%23%20get%20things%20that%20are%20bands%0A%20%20%3Fitem%20wdt%3AP1082%20%3Fpopulation%20.%0A%20%20%23%3Fitems%20wdt%3AP571%20%3Fdate%20.%20%23%20get%20the%20date%20when%20the%20band%20was%20founded%0A%20%20%3Fitem%20wdt%3AP17%20%3Fcountry%20.%0A%20%20%3Fcountry%20wdt%3AP30%20%3Fcontinent%20.%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D%0A',
   },
 
   {
@@ -98,7 +107,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'Wikipedia',
     sourceURL:
-      'https://en.wikipedia.org/w/index.php?title=Orchestra&oldid=1022472978',
+        'https://en.wikipedia.org/w/index.php?title=Orchestra&oldid=1022472978',
   },
 
   {
@@ -108,7 +117,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'Wikidata',
     sourceURL:
-      'https://query.wikidata.org/#%23Primi%20ministri%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fstart%20%3Fend%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20p%3AP39%20%3Fposition.%0A%20%20%3Fposition%20ps%3AP39%20wd%3AQ332711%3B%0A%20%20%20%20%20%20%20%20pq%3AP580%20%3Fstart%3B%0A%20%20%20%20%20%20%20%20pq%3AP582%20%3Fend%0A%20%20%23%3Fstart%20wdt%3AP580%20%3Fitem.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D',
+        'https://query.wikidata.org/#%23Primi%20ministri%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fstart%20%3Fend%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20p%3AP39%20%3Fposition.%0A%20%20%3Fposition%20ps%3AP39%20wd%3AQ332711%3B%0A%20%20%20%20%20%20%20%20pq%3AP580%20%3Fstart%3B%0A%20%20%20%20%20%20%20%20pq%3AP582%20%3Fend%0A%20%20%23%3Fstart%20wdt%3AP580%20%3Fitem.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D',
   },
 
   {
@@ -127,7 +136,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'gov.uk',
     sourceURL:
-      'https://www.gov.uk/government/publications/2050-pathways-calculator-with-costs',
+        'https://www.gov.uk/government/publications/2050-pathways-calculator-with-costs',
   },
 
   {
@@ -155,7 +164,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'Wikipedia',
     sourceURL:
-      'https://en.wikipedia.org/w/index.php?title=List_of_countries_by_GDP_sector_composition&oldid=1022131842',
+        'https://en.wikipedia.org/w/index.php?title=List_of_countries_by_GDP_sector_composition&oldid=1022131842',
   },
 
   {
@@ -210,7 +219,7 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'NOAA via Vega Dataset',
     sourceURL:
-      'https://github.com/vega/vega-datasets/blob/master/SOURCES.md#seattle-weathercsv',
+        'https://github.com/vega/vega-datasets/blob/master/SOURCES.md#seattle-weathercsv',
   },
 
   {
@@ -229,7 +238,8 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'Wikipedia',
     sourceURL: 'https://en.wikipedia.org/wiki/2019%E2%80%9320_Premier_League',
-  },
+  },*/
+  }
 
   // {
   //   name: '',

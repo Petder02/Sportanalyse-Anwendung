@@ -1,4 +1,5 @@
 import React from "react"
+import { saveAs } from 'file-saver';
 
 import "./index.css"
 
@@ -324,10 +325,7 @@ export default function MainTable() {
                 <button
                     className="border rounded p-2 mb-2"
                     onClick={() =>
-                        console.info(
-                            "table.getSelectedFlatRows()",
-                            table.getSelectedRowModel().flatRows
-                        )
+                            WriteToCSV(table.getSelectedRowModel().flatRows)
                     }
                 >
                     Log table.getSelectedFlatRows()
@@ -387,4 +385,33 @@ function IndeterminateCheckbox({ indeterminate, className = "", ...rest }) {
             {...rest}
         />
     )
+}
+
+function WriteToCSV(data) {
+    // Just print it for debugging purposes
+    console.info(
+        "table.getSelectedFlatRows()",
+        //data[1]['original']['age']
+        //Object.keys(data[0]['original'])
+        data.length
+    )
+
+    const modifiedData = []
+    const keys = Object.keys(data[0]['original'])
+    modifiedData.push(keys)
+    for(let i = 1; i <= data.length; i++) {
+        modifiedData.push([])
+        for(const x of keys) {
+            modifiedData[i].push(data[i-1]['original'][x])
+        }
+    }
+
+    // Tab-separated values (consistent with previous .tsv files)
+    const csv = modifiedData.map(row => row.join(',')).join('\n');
+
+    // Create a blob for the TSV string
+    const blob = new Blob([csv], { type: 'text/tab-separated-values;charset=utf-8' });
+
+    // Save the file
+    saveAs(blob, 'selected_data.csv')
 }

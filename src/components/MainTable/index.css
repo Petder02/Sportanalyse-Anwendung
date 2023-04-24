@@ -5,22 +5,27 @@ html {
 
 table {
     border: 1px solid lightgray;
+    margin: 0 auto;
 }
 
 tbody {
     border-bottom: 1px solid lightgray;
+    margin: 0 auto;
 }
 
 th {
     border-bottom: 1px solid lightgray;
     border-right: 1px solid lightgray;
     padding: 2px 4px;
+    margin: 0 auto;
 }
 
 tfoot {
     color: gray;
+    margin: 0 auto;
 }
 
 tfoot th {
     font-weight: normal;
+    margin: 0 auto;
 }

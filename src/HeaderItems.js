@@ -1,5 +1,10 @@
 const headerItems = [
   {
+    label: 'Stats Glossary',
+    slug: 'stats-help',
+    href: 'https://www.espn.com/nfl/news/story?id=2128923',
+  },
+  {
     label: 'Help',
     slug: 'help',
     href: 'https://case.edu/',

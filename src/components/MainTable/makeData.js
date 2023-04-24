@@ -215,7 +215,7 @@ export function makeData(...lens) {
 
         for (let d = 0; d < len; d++) {
             const row = {
-                ...newPerson(d),
+                ...newPlayer(d),
             };
 
             if (lens[depth + 1]) {

@@ -63,16 +63,16 @@ export default function MainTable() {
                         footer: props => props.column.id
                     },
                     {
-                        accessorKey: "age",
-                        header: () => "Age",
+                        accessorKey: "team",
+                        header: () => "Team",
                         footer: props => props.column.id
                     },
                     {
-                        accessorKey: "visits",
-                        header: () => <span>Visits</span>,
+                        accessorKey: "position",
+                        header: () => <span>Position</span>,
                         footer: props => props.column.id
-                    },
-                    {
+                    }
+                    /*{
                         accessorKey: "status",
                         header: "Status",
                         footer: props => props.column.id
@@ -81,7 +81,7 @@ export default function MainTable() {
                         accessorKey: "progress",
                         header: "Profile Progress",
                         footer: props => props.column.id
-                    }
+                    }*/
                 ]
 
                 /* columns: [
@@ -191,7 +191,7 @@ export default function MainTable() {
     })
 
     return (
-        <div className="p-2">
+        <div className="p-2" id={'table-buttons'}>
             {/*<div>
                 <input
                     value={globalFilter ?? ""}

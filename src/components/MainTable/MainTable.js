@@ -1,4 +1,3 @@
-// @ts-ignore
 import React from "react"
 
 import "./index.css"
@@ -12,6 +11,7 @@ import {
     getPaginationRowModel,
     useReactTable
 } from "@tanstack/react-table"
+import fs from "fs";
 
 export default function MainTable() {
     const rerender = React.useReducer(() => ({}), {})[1]
@@ -46,7 +46,7 @@ export default function MainTable() {
                 )
             },
             {
-                header: "Name",
+                header: "Players and Teams",
                 footer: props => props.column.id,
                 columns: [
                     {
@@ -60,13 +60,7 @@ export default function MainTable() {
                         cell: info => info.getValue(),
                         header: () => <span>Last Name</span>,
                         footer: props => props.column.id
-                    }
-                ]
-            },
-            {
-                header: "Info",
-                footer: props => props.column.id,
-                columns: [
+                    },
                     {
                         accessorKey: "age",
                         header: () => "Age",
@@ -88,13 +82,67 @@ export default function MainTable() {
                         footer: props => props.column.id
                     }
                 ]
-            }
+
+                /* columns: [
+                    {
+                        accessorKey: "season",
+                        cell: info => info.getValue(),
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorFn: row => row.lastName,
+                        id: "seasonType",
+                        cell: info => info.getValue(),
+                        header: () => <span>Last Name</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "team",
+                        header: () => "Age",
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "score",
+                        header: () => <span>Visits</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "opponentScore",
+                        header: "Status",
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "totalScore",
+                        header: "Profile Progress",
+                        footer: props => props.column.id
+                    }
+                ]
+                */
+            },
+
         ],
         []
     )
 
+
+    //Read data from file
+    {/*
+    const fs = require('fs');
+    const rawData = fs.readFileSync('teams.json');
+    const data2 = JSON.parse(rawData);
+
+    //Remove _id field from each object in the array
+    const formattedData = data2.map(obj => {
+        delete obj._id;
+        return obj;
+    });*/
+    }
+
     let data, setData;
     [data, setData] = React.useState(() => makeData(100000));
+
+    //[data, setData] = React.useState(formattedData);
+
     const refreshData = () => setData(() => makeData(100000))
 
     const table = useReactTable({

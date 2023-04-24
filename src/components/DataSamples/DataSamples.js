@@ -5,7 +5,7 @@ import styles from './DataSamples.module.scss'
 const samplesList = [
   {
     name: 'selected_data',
-    category: 'Bar chart', 'Line chart',
+    category: 'Bar chart',
     url:
         './sample-datasets/selected_data.tsv',
     delimiter: '\t',

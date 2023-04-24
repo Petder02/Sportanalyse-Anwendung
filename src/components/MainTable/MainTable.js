@@ -357,7 +357,7 @@ export default function MainTable() {
                             WriteToCSV(table.getSelectedRowModel().flatRows)
                     }
                 >
-                    Log table.getSelectedFlatRows()
+                    Generate CSV From Selected Rows
                 </button>
             </div>
         </div>

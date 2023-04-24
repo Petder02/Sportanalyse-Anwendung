@@ -71,6 +71,61 @@ export default function MainTable() {
                         accessorKey: "position",
                         header: () => <span>Position</span>,
                         footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "scoreQuarter1",
+                        header: () => <span>Score Q1</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "scoreQuarter2",
+                        header: () => <span>Score Q2</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "scoreQuarter3",
+                        header: () => <span>Score Q3</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "scoreQuarter4",
+                        header: () => <span>Score Q4</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "firstDownsByRushing",
+                        header: () => <span>First Downs by Rushing</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "offensiveYards",
+                        header: () => <span>Offensive Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "passingYards",
+                        header: () => <span>Passing Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "rushingYards",
+                        header: () => <span>Rushing Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "passerRating",
+                        header: () => <span>Passer Rating</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "thirdDownAttempts",
+                        header: () => <span>Third Down Attempts</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "redZoneAttempts",
+                        header: () => <span>Red Zone Attempts</span>,
+                        footer: props => props.column.id
                     }
                     /*{
                         accessorKey: "status",
@@ -154,9 +209,14 @@ export default function MainTable() {
         //Object.keys(data[0]['original'])
         data.length
     )
-
+    if(data.length === 0) {
+        return;
+    }
     const modifiedData = []
     const keys = Object.keys(data[0]['original'])
+    if(keys[keys.length - 1] === 'subRows') {
+        keys.pop()
+    }
     modifiedData.push(keys)
     for(let i = 1; i <= data.length; i++) {
         modifiedData.push([])

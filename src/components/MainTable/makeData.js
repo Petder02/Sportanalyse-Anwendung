@@ -103,12 +103,28 @@ const genRandPosition = () => {
     return positions[Math.floor(Math.random() * positions.length)];
 }
 
-const newPlayer = () => {
+const genRandStatNumber = (min=0, max=100) => {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+const newPlayer = options => {
     return {
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         team: genRandTeam(),
-        position: genRandPosition()
+        position: genRandPosition(),
+        scoreQuarter1: faker.datatype.number(100),
+        scoreQuarter2: faker.datatype.number(100),
+        scoreQuarter3: faker.datatype.number(100),
+        scoreQuarter4: faker.datatype.number(100),
+        firstDownsByRushing: faker.datatype.number(1000),
+        offensiveYards: faker.datatype.number(1000),
+        passingYards: faker.datatype.number(1000),
+        passerRating: faker.datatype.float({max: 100, precision: 0.01}),
+        rushingYards: faker.datatype.number(1000),
+        receivingYards: faker.datatype.number(1000),
+        thirdDownAttempts: faker.datatype.number(50),
+        redZoneAttempts: faker.datatype.number(59)
     }
 }
 
@@ -191,13 +207,13 @@ const newPerson = (d) => {
 
 
 
-/* old makdata function. Does not use loops
+//old makdata function. Does not use loops
 export function makeData(...lens) {
     const makeDataLevel = (depth = 0) => {
         const len = lens[depth]
         return range(len).map(d => {
             return {
-                ...newPerson(),
+                ...newPlayer(),
                 subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined
             }
         })
@@ -205,28 +221,28 @@ export function makeData(...lens) {
 
     return makeDataLevel()
 }
-*/
+
 
 //This function uses loops. By using loops, we can use the data from the json file at each loop using the index
-export function makeData(...lens) {
-    const makeDataLevel = (depth = 0) => {
-        const len = lens[depth];
-        const rows = [];
-
-        for (let d = 0; d < len; d++) {
-            const row = {
-                ...newPlayer(d),
-            };
-
-            if (lens[depth + 1]) {
-                row.subRows = makeDataLevel(depth + 1);
-            }
-
-            rows.push(row);
-        }
-
-        return rows;
-    }
-    return makeDataLevel();
-}
+// export function makeData(...lens) {
+//     const makeDataLevel = (depth = 0) => {
+//         const len = lens[depth];
+//         const rows = [];
+//
+//         for (let d = 0; d < len; d++) {
+//             const row = {
+//                 ...newPlayer(),
+//             };
+//
+//             if (lens[depth + 1]) {
+//                 row.subRows = makeDataLevel(depth + 1);
+//             }
+//
+//             rows.push(row);
+//         }
+//
+//         return rows;
+//     }
+//     return makeDataLevel();
+// }
 

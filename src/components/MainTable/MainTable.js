@@ -145,6 +145,35 @@ export default function MainTable() {
     //[data, setData] = React.useState(formattedData);
 
     const refreshData = () => setData(() => makeData(100000))
+    
+    const WriteToCSV = (data) => {
+            // Just print it for debugging purposes
+    console.info(
+        "table.getSelectedFlatRows()",
+        //data[1]['original']['age']
+        //Object.keys(data[0]['original'])
+        data.length
+    )
+
+    const modifiedData = []
+    const keys = Object.keys(data[0]['original'])
+    modifiedData.push(keys)
+    for(let i = 1; i <= data.length; i++) {
+        modifiedData.push([])
+        for(const x of keys) {
+            modifiedData[i].push(data[i-1]['original'][x])
+        }
+    }
+
+    // Tab-separated values (consistent with previous .tsv files)
+    const csv = modifiedData.map(row => row.join(',')).join('\n');
+
+    // Create a blob for the TSV string
+    const blob = new Blob([csv], { type: 'text/tab-separated-values;charset=utf-8' });
+
+    // Save the file
+    saveAs(blob, 'selected_data.csv')
+    }
 
     const table = useReactTable({
         data,
@@ -385,33 +414,4 @@ function IndeterminateCheckbox({ indeterminate, className = "", ...rest }) {
             {...rest}
         />
     )
-}
-
-function WriteToCSV(data) {
-    // Just print it for debugging purposes
-    console.info(
-        "table.getSelectedFlatRows()",
-        //data[1]['original']['age']
-        //Object.keys(data[0]['original'])
-        data.length
-    )
-
-    const modifiedData = []
-    const keys = Object.keys(data[0]['original'])
-    modifiedData.push(keys)
-    for(let i = 1; i <= data.length; i++) {
-        modifiedData.push([])
-        for(const x of keys) {
-            modifiedData[i].push(data[i-1]['original'][x])
-        }
-    }
-
-    // Tab-separated values (consistent with previous .tsv files)
-    const csv = modifiedData.map(row => row.join(',')).join('\n');
-
-    // Create a blob for the TSV string
-    const blob = new Blob([csv], { type: 'text/tab-separated-values;charset=utf-8' });
-
-    // Save the file
-    saveAs(blob, 'selected_data.csv')
 }

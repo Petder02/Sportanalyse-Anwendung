@@ -20,6 +20,98 @@ const newPerson = () => {
     }
 }
 
+const genRandTeam = () => {
+    const teams = [
+        "ARI",
+        "ATL",
+        "BAL",
+        "BUF",
+        "CAR",
+        "CHI",
+        "CIN",
+        "CLE",
+        "DAL",
+        "DEN",
+        "DET",
+        "GB",
+        "HOU",
+        "IND",
+        "JAC",
+        "KC",
+        "LV",
+        "LAC",
+        "LAR",
+        "MIA",
+        "MIN",
+        "MIN",
+        "NE",
+        "NO",
+        "NYG",
+        "NYJ",
+        "PHI",
+        "PIT",
+        "SF",
+        "SEA",
+        "TB",
+        "TEN",
+        "WAS"
+    ]
+    return teams[Math.floor(Math.random() * teams.length)];
+}
+
+const genRandPosition = () => {
+    const positions = [
+        "QB",
+        "RB",
+        "FB",
+        "TB",
+        "HB",
+        "OL",
+        "G",
+        "LG",
+        "RG",
+        "T",
+        "LT",
+        "RT",
+        "C",
+        "WR",
+        "TE",
+        "DL",
+        "DE",
+        "LE",
+        "RE",
+        "DT",
+        "NT",
+        "LB",
+        "MLB",
+        "ILB",
+        "OLB",
+        "LOLB",
+        "ROLB",
+        "SLB",
+        "WLB",
+        "DB",
+        "CB",
+        "S",
+        "SS",
+        "FS",
+        "LS",
+        "P",
+        "K",
+        "PR"
+    ]
+    return positions[Math.floor(Math.random() * positions.length)];
+}
+
+const newPlayer = () => {
+    return {
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        team: genRandTeam(),
+        position: genRandPosition()
+    }
+}
+
 
 // Reads data from file and stores in array. Then retrieves each column from the array and stores in a variable.
 /*const fs = require('fs');

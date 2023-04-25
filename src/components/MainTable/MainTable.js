@@ -19,6 +19,11 @@ export default function MainTable() {
 
     const [rowSelection, setRowSelection] = React.useState({})
     const [globalFilter, setGlobalFilter] = React.useState("")
+    const [tableType, setTableType] = React.useState("")
+
+    React.useEffect(() => {
+        setTableType('players')
+    }, [])
 
     const columns = React.useMemo(
         () => [
@@ -47,7 +52,7 @@ export default function MainTable() {
                 )
             },
             {
-                header: "Players and Teams",
+                header: "Players",
                 footer: props => props.column.id,
                 columns: [
                     {
@@ -177,7 +182,167 @@ export default function MainTable() {
             },
 
         ],
-        []
+        [tableType]
+    )
+
+    const teamColumns = React.useMemo(
+        () => [
+            {
+                id: "select",
+                header: ({ table }) => (
+                    <IndeterminateCheckbox
+                        {...{
+                            checked: table.getIsAllRowsSelected(),
+                            indeterminate: table.getIsSomeRowsSelected(),
+                            onChange: table.getToggleAllRowsSelectedHandler()
+                        }}
+                    />
+                ),
+                cell: ({ row }) => (
+                    <div className="px-1">
+                        <IndeterminateCheckbox
+                            {...{
+                                checked: row.getIsSelected(),
+                                disabled: !row.getCanSelect(),
+                                indeterminate: row.getIsSomeSelected(),
+                                onChange: row.getToggleSelectedHandler()
+                            }}
+                        />
+                    </div>
+                )
+            },
+            {
+                header: "Players",
+                footer: props => props.column.id,
+                columns: [
+                    {
+                        accessorKey: "firstName",
+                        cell: info => info.getValue(),
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorFn: row => row.lastName,
+                        id: "lastName",
+                        cell: info => info.getValue(),
+                        header: () => <span>Last Name</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "team",
+                        header: () => "Team",
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "position",
+                        header: () => <span>Position</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "scoreQuarter1",
+                        header: () => <span>Score Q1</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "scoreQuarter2",
+                        header: () => <span>Score Q2</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "scoreQuarter3",
+                        header: () => <span>Score Q3</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "scoreQuarter4",
+                        header: () => <span>Score Q4</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "firstDownsByRushing",
+                        header: () => <span>First Downs by Rushing</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "offensiveYards",
+                        header: () => <span>Offensive Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "passingYards",
+                        header: () => <span>Passing Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "rushingYards",
+                        header: () => <span>Rushing Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "passerRating",
+                        header: () => <span>Passer Rating</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "thirdDownAttempts",
+                        header: () => <span>Third Down Attempts</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "redZoneAttempts",
+                        header: () => <span>Red Zone Attempts</span>,
+                        footer: props => props.column.id
+                    }
+                    /*{
+                        accessorKey: "status",
+                        header: "Status",
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "progress",
+                        header: "Profile Progress",
+                        footer: props => props.column.id
+                    }*/
+                ]
+
+                /* columns: [
+                    {
+                        accessorKey: "season",
+                        cell: info => info.getValue(),
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorFn: row => row.lastName,
+                        id: "seasonType",
+                        cell: info => info.getValue(),
+                        header: () => <span>Last Name</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "team",
+                        header: () => "Age",
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "score",
+                        header: () => <span>Visits</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "opponentScore",
+                        header: "Status",
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "totalScore",
+                        header: "Profile Progress",
+                        footer: props => props.column.id
+                    }
+                ]
+                */
+            },
+
+        ],
+        [tableType]
     )
 
 
@@ -225,6 +390,8 @@ export default function MainTable() {
         }
     }
 
+    let buttonType = 'players';
+
     // Tab-separated values (consistent with previous .tsv files)
     const csv = modifiedData.map(row => row.join(',')).join('\n');
 
@@ -250,6 +417,21 @@ export default function MainTable() {
         debugTable: true
     })
 
+    const changeToPlayerTable = () => {
+        setTableType('players')
+        console.log(tableType)
+    }
+
+    const changeToTeamTable = () => {
+        setTableType('teams')
+        console.log(tableType)
+    }
+
+    // Change
+    React.useEffect(() => {
+
+    })
+
     return (
         <div className="p-2" id={'table-buttons'}>
             {/*<div>
@@ -260,6 +442,10 @@ export default function MainTable() {
                     placeholder="Search all columns..."
                 />
             </div>*/}
+            <div id={"players-teams-select"}>
+                <button className={"border rounded p-2 mb-2"} onClick={changeToPlayerTable} style={{margin: "0 auto"}}>Select From Players</button>
+                <button className={"border rounded p-2 mb-2"} onClick={changeToTeamTable} style={{margin: "0 auto"}}>Select From Teams</button>
+            </div>
             <div className="h-2" />
             <table>
                 <thead>

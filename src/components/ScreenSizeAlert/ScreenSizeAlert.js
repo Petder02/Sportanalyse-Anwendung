@@ -37,12 +37,12 @@ function ScreenSizeAlert() {
           <span role="img" aria-label="Party icon">
             🎉
           </span>{' '}
-          Welcome to the new RAWGraphs!
+          Welcome to Sportanalyse-Anwendung 1.0!
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p className="big">
-          RAWGraphs 2.0 is designed for {size.width >= 768 ? 'slightly ' : ' '}
+          Sportanalyse-Anwendung 1.0 is designed for {size.width >= 768 ? 'slightly ' : ' '}
           bigger screens!
         </p>
         <p>

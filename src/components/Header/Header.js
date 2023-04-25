@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './Header.module.scss'
 import { Navbar, Nav } from 'react-bootstrap'
-import DarkMode from "../Buttons/DarkMode";
-import HelpPopUp from "../Buttons/HelpPopUp";
-import GitHubLink from "../Buttons/GitHubLink";
+import DarkMode from "../HeaderButtons/DarkMode";
+import HelpPopUp from "../HeaderButtons/HelpPopUp";
+import GitHubLink from "../HeaderButtons/GitHubLink";
+import StatsHelp from "../HeaderButtons/StatsHelp";
 
 export default function Header({ menuItems }) {
     return (
@@ -13,6 +14,7 @@ export default function Header({ menuItems }) {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     <DarkMode></DarkMode>
+                    <StatsHelp></StatsHelp>
                     <HelpPopUp></HelpPopUp>
                     <GitHubLink></GitHubLink>
                 </Nav>

@@ -80,19 +80,6 @@ function DataLoader({
       icon: BsUpload,
       allowedForReplace: true,
     }
-    // {
-    //   id: 'sample',
-    //   name: 'Try our data samples',
-    //   message: '',
-    //   loader: (
-    //     <DataSamples
-    //       onSampleReady={loadSample}
-    //       setLoadingError={setLoadingError}
-    //     />
-    //   ),
-    //   icon: BsGift,
-    //   allowedForReplace: true,
-    // },
   ]
   const [optionIndex, setOptionIndex] = useState(0)
   const selectedOption = options[optionIndex]

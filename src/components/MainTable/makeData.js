@@ -109,10 +109,30 @@ const genRandStatNumber = (min=0, max=100) => {
 
 const newPlayer = options => {
     return {
-        firstName: faker.name.firstName(),
+        firstName: faker.name.firstName("male"),
         lastName: faker.name.lastName(),
         team: genRandTeam(),
         position: genRandPosition(),
+        season: faker.datatype.number({min: 2013, max: 2022}),
+        passingAttempts: faker.datatype.number(150),
+        passingYards: faker.datatype.number(2000),
+        rushingAttempts: faker.datatype.number(150),
+        rushingYards: faker.datatype.number(2000),
+        receptions: faker.datatype.number(150),
+        receivingYards: faker.datatype.number(2000),
+        fumbles: faker.datatype.number(20),
+        interceptions: faker.datatype.number(20),
+        touchdowns: faker.datatype.number(30),
+        sacks: faker.datatype.number(40),
+        safeties: faker.datatype.number(20),
+        tackles: faker.datatype.number(120),
+        passerRating: faker.datatype.float({max: 100, precision: 0.01}),
+    }
+}
+const newTeam = options => {
+    return {
+        team: genRandTeam(),
+        season: faker.datatype.number({min: 2013, max: 2022}),
         scoreQuarter1: faker.datatype.number(100),
         scoreQuarter2: faker.datatype.number(100),
         scoreQuarter3: faker.datatype.number(100),
@@ -120,11 +140,13 @@ const newPlayer = options => {
         firstDownsByRushing: faker.datatype.number(1000),
         offensiveYards: faker.datatype.number(1000),
         passingYards: faker.datatype.number(1000),
-        passerRating: faker.datatype.float({max: 100, precision: 0.01}),
         rushingYards: faker.datatype.number(1000),
         receivingYards: faker.datatype.number(1000),
         thirdDownAttempts: faker.datatype.number(50),
-        redZoneAttempts: faker.datatype.number(59)
+        redZoneAttempts: faker.datatype.number(50),
+        fumbles: faker.datatype.number(100),
+        safeties: faker.datatype.number(20),
+        sacks: faker.datatype.number(100)
     }
 }
 
@@ -209,11 +231,41 @@ const newPerson = (d) => {
 
 //old makdata function. Does not use loops
 export function makeData(...lens) {
+    //console.log(lens)
     const makeDataLevel = (depth = 0) => {
         const len = lens[depth]
         return range(len).map(d => {
             return {
                 ...newPlayer(),
+                subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined
+            }
+        })
+    }
+
+    return makeDataLevel()
+}
+
+export function makePlayerData(...lens) {
+    console.log(lens)
+    const makeDataLevel = (depth = 0) => {
+        const len = lens[depth]
+        return range(len).map(d => {
+            return {
+                ...newPlayer(),
+                subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined
+            }
+        })
+    }
+
+    return makeDataLevel()
+}
+
+export function makeTeamData(...lens) {
+    const makeDataLevel = (depth = 0) => {
+        const len = lens[depth]
+        return range(len).map(d => {
+            return {
+                ...newTeam(),
                 subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined
             }
         })

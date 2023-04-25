@@ -3,7 +3,7 @@ import { saveAs } from 'file-saver';
 
 import "./index.css"
 
-import { makeData } from "./makeData"
+import { makePlayerData, makeTeamData } from "./makeData"
 
 import {
     flexRender,
@@ -19,13 +19,8 @@ export default function MainTable() {
 
     const [rowSelection, setRowSelection] = React.useState({})
     const [globalFilter, setGlobalFilter] = React.useState("")
-    const [tableType, setTableType] = React.useState("")
 
-    React.useEffect(() => {
-        setTableType('players')
-    }, [])
-
-    const columns = React.useMemo(
+    const playerColumns = React.useMemo(
         () => [
             {
                 id: "select",
@@ -58,6 +53,7 @@ export default function MainTable() {
                     {
                         accessorKey: "firstName",
                         cell: info => info.getValue(),
+                        header: () => <span>First Name</span>,
                         footer: props => props.column.id
                     },
                     {
@@ -78,33 +74,13 @@ export default function MainTable() {
                         footer: props => props.column.id
                     },
                     {
-                        accessorKey: "scoreQuarter1",
-                        header: () => <span>Score Q1</span>,
+                        accessorKey: "season",
+                        header: () => <span>Season</span>,
                         footer: props => props.column.id
                     },
                     {
-                        accessorKey: "scoreQuarter2",
-                        header: () => <span>Score Q2</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "scoreQuarter3",
-                        header: () => <span>Score Q3</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "scoreQuarter4",
-                        header: () => <span>Score Q4</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "firstDownsByRushing",
-                        header: () => <span>First Downs by Rushing</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "offensiveYards",
-                        header: () => <span>Offensive Yards</span>,
+                        accessorKey: "passingAttempts",
+                        header: () => <span>Passing Attempts</span>,
                         footer: props => props.column.id
                     },
                     {
@@ -113,29 +89,64 @@ export default function MainTable() {
                         footer: props => props.column.id
                     },
                     {
+                        accessorKey: "rushingAttempts",
+                        header: () => <span>Rushing Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
                         accessorKey: "rushingYards",
                         header: () => <span>Rushing Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "receptions",
+                        header: () => <span>Receptions</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "receivingYards",
+                        header: () => <span>Receiving Yards</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "fumbles",
+                        header: () => <span>Fumbles</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "interceptions",
+                        header: () => <span>Interceptions</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "touchdowns",
+                        header: () => <span>Touchdowns</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "sacks",
+                        header: () => <span>Sacks</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "safeties",
+                        header: () => <span>Safeties</span>,
+                        footer: props => props.column.id
+                    },
+                    {
+                        accessorKey: "tackles",
+                        header: () => <span>Tackles</span>,
                         footer: props => props.column.id
                     },
                     {
                         accessorKey: "passerRating",
                         header: () => <span>Passer Rating</span>,
                         footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "thirdDownAttempts",
-                        header: () => <span>Third Down Attempts</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "redZoneAttempts",
-                        header: () => <span>Red Zone Attempts</span>,
-                        footer: props => props.column.id
                     }
                 ]
             },
         ],
-        [tableType]
+        []
     )
 
     const teamColumns = React.useMemo(
@@ -165,29 +176,17 @@ export default function MainTable() {
                 )
             },
             {
-                header: "Players",
+                header: "Teams",
                 footer: props => props.column.id,
                 columns: [
-                    {
-                        accessorKey: "firstName",
-                        cell: info => info.getValue(),
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorFn: row => row.lastName,
-                        id: "lastName",
-                        cell: info => info.getValue(),
-                        header: () => <span>Last Name</span>,
-                        footer: props => props.column.id
-                    },
                     {
                         accessorKey: "team",
                         header: () => "Team",
                         footer: props => props.column.id
                     },
                     {
-                        accessorKey: "position",
-                        header: () => <span>Position</span>,
+                        accessorKey: "season",
+                        header: () => <span>Season</span>,
                         footer: props => props.column.id
                     },
                     {
@@ -231,8 +230,8 @@ export default function MainTable() {
                         footer: props => props.column.id
                     },
                     {
-                        accessorKey: "passerRating",
-                        header: () => <span>Passer Rating</span>,
+                        accessorKey: "receivingYards",
+                        header: () => <span>Receiving Yards</span>,
                         footer: props => props.column.id
                     },
                     {
@@ -244,120 +243,74 @@ export default function MainTable() {
                         accessorKey: "redZoneAttempts",
                         header: () => <span>Red Zone Attempts</span>,
                         footer: props => props.column.id
-                    }
-                    /*{
-                        accessorKey: "status",
-                        header: "Status",
+                    },
+                    {
+                        accessorKey: "fumbles",
+                        header: () => <span>Fumbles</span>,
                         footer: props => props.column.id
                     },
                     {
-                        accessorKey: "progress",
-                        header: "Profile Progress",
-                        footer: props => props.column.id
-                    }*/
-                ]
-
-                /* columns: [
-                    {
-                        accessorKey: "season",
-                        cell: info => info.getValue(),
+                        accessorKey: "safeties",
+                        header: () => <span>Safeties</span>,
                         footer: props => props.column.id
                     },
                     {
-                        accessorFn: row => row.lastName,
-                        id: "seasonType",
-                        cell: info => info.getValue(),
-                        header: () => <span>Last Name</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "team",
-                        header: () => "Age",
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "score",
-                        header: () => <span>Visits</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "opponentScore",
-                        header: "Status",
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "totalScore",
-                        header: "Profile Progress",
+                        accessorKey: "sacks",
+                        header: () => <span>Sacks</span>,
                         footer: props => props.column.id
                     }
                 ]
-                */
             },
-
         ],
-        [tableType]
+        []
     )
 
+    let playerData, setPlayerData;
+    [playerData, setPlayerData] = React.useState(() => makePlayerData(100000));
+    let teamData, setTeamData;
+    [teamData, setTeamData] = React.useState(() => makeTeamData(100000));
 
-    //Read data from file
-    {/*
-    const fs = require('fs');
-    const rawData = fs.readFileSync('teams.json');
-    const data2 = JSON.parse(rawData);
-
-    //Remove _id field from each object in the array
-    const formattedData = data2.map(obj => {
-        delete obj._id;
-        return obj;
-    });*/
-    }
-
-    let data, setData;
-    [data, setData] = React.useState(() => makeData(100000));
-
-    //[data, setData] = React.useState(formattedData);
-
-    const refreshData = () => setData(() => makeData(100000))
+    //const refreshData = () => setData(() => makeData(100000))
+    const refreshPlayerData = () => setPlayerData(() => makePlayerData(100000))
+    const refreshTeamData = () => setTeamData(() => makeTeamData(100000))
     
     const WriteToCSV = (data) => {
             // Just print it for debugging purposes
-    console.info(
-        "table.getSelectedFlatRows()",
-        //data[1]['original']['age']
-        //Object.keys(data[0]['original'])
-        data.length
-    )
-    if(data.length === 0) {
-        return;
-    }
-    const modifiedData = []
-    const keys = Object.keys(data[0]['original'])
-    if(keys[keys.length - 1] === 'subRows') {
-        keys.pop()
-    }
-    modifiedData.push(keys)
-    for(let i = 1; i <= data.length; i++) {
-        modifiedData.push([])
-        for(const x of keys) {
-            modifiedData[i].push(data[i-1]['original'][x])
+        console.info(
+            "table.getSelectedFlatRows()",
+            //data[1]['original']['age']
+            //Object.keys(data[0]['original'])
+            data.length
+        )
+        if(data.length === 0) {
+            return;
         }
+        console.log(data)
+        const modifiedData = []
+        const keys = Object.keys(data[0]['original'])
+        if (keys[keys.length - 1] === 'subRows') {
+            keys.pop()
+        }
+        modifiedData.push(keys)
+        for(let i = 1; i <= data.length; i++) {
+            modifiedData.push([])
+            for(const x of keys) {
+                modifiedData[i].push(data[i-1]['original'][x])
+            }
+        }
+        // Tab-separated values (consistent with previous .tsv files)
+        const csv = modifiedData.map(row => row.join(',')).join('\n');
+
+        // Create a blob for the TSV string
+        const blob = new Blob([csv], { type: 'text/tab-separated-values;charset=utf-8' });
+
+        // Save the file
+        saveAs(blob, 'selected_data.csv')
     }
 
-    let buttonType = 'players';
-
-    // Tab-separated values (consistent with previous .tsv files)
-    const csv = modifiedData.map(row => row.join(',')).join('\n');
-
-    // Create a blob for the TSV string
-    const blob = new Blob([csv], { type: 'text/tab-separated-values;charset=utf-8' });
-
-    // Save the file
-    saveAs(blob, 'selected_data.csv')
-    }
-
-    const table = useReactTable({
-        data,
-        columns,
+    let playerTable = useReactTable({
+        data: playerData,
+        columns: playerColumns,
         state: {
             rowSelection
         },
@@ -367,197 +320,360 @@ export default function MainTable() {
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-        debugTable: true
-    })
+        debugTable: true,
+    });
 
-    const changeToPlayerTable = () => {
-        setTableType('players')
-        console.log(tableType)
+    let teamTable = useReactTable({
+        data: teamData,
+        columns: teamColumns,
+        state: {
+            rowSelection
+        },
+        enableRowSelection: true, //enable row selection for all rows
+        // enableRowSelection: row => row.original.age > 18, // or enable row selection conditionally per row
+        onRowSelectionChange: setRowSelection,
+        getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+        debugTable: true,
+    });
+
+    // Displays the player table and closes the teams table
+    const displayPlayerTable = () => {
+        document.getElementById('team-table').style.display = 'none';
+        document.getElementById('player-table').style.display = 'block';
     }
 
-    const changeToTeamTable = () => {
-        setTableType('teams')
-        console.log(tableType)
+    // Displays the teams table and closes the player table
+    const displayTeamTable = () => {
+        document.getElementById('player-table').style.display = 'none';
+        document.getElementById('team-table').style.display = 'block';
     }
-
-    // Change
-    React.useEffect(() => {
-
-    })
 
     return (
-        <div className="p-2" id={'table-buttons'}>
-            {/*<div>
-                <input
-                    value={globalFilter ?? ""}
-                    onChange={e => setGlobalFilter(e.target.value)}
-                    className="p-2 font-lg shadow border border-block"
-                    placeholder="Search all columns..."
-                />
-            </div>*/}
+        <div className="p-2" id={"tables-container"}>
+            <br />
             <div id={"players-teams-select"}>
-                <button className={"border rounded p-2 mb-2"} onClick={changeToPlayerTable} style={{margin: "0 auto"}}>Select From Players</button>
-                <button className={"border rounded p-2 mb-2"} onClick={changeToTeamTable} style={{margin: "0 auto"}}>Select From Teams</button>
+                <button
+                    className={"border rounded p-2 mb-2 table-btn"}
+                    onClick={displayPlayerTable}
+                >
+                    Select From Players
+                </button>
+                <button
+                    className={"border rounded p-2 mb-2 table-btn"}
+                    onClick={displayTeamTable}
+                >
+                    Select From Teams
+                </button>
             </div>
-            <div className="h-2" />
-            <table>
-                <thead>
-                {table.getHeaderGroups().map(headerGroup => (
-                    <tr key={headerGroup.id}>
-                        {headerGroup.headers.map(header => {
-                            return (
-                                <th key={header.id} colSpan={header.colSpan}>
-                                    {header.isPlaceholder ? null : (
-                                        <>
-                                            {flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext()
-                                            )}
-                                            {header.column.getCanFilter() ? (
-                                                <div>
-                                                    <Filter column={header.column} table={table} />
-                                                </div>
-                                            ) : null}
-                                        </>
-                                    )}
-                                </th>
-                            )
-                        })}
-                    </tr>
-                ))}
-                </thead>
-                <tbody>
-                {table.getRowModel().rows.map(row => {
-                    return (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map(cell => {
+            <br />
+
+            {/* Players Table */}
+            <div className="h-2" id={"player-table"} style={{display: "block"}}>
+                <table>
+                    <thead>
+                    {playerTable.getHeaderGroups().map(headerGroup => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map(header => {
                                 return (
-                                    <td key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext()
+                                    <th key={header.id} colSpan={header.colSpan}>
+                                        {header.isPlaceholder ? null : (
+                                            <>
+                                                {flexRender(
+                                                    header.column.columnDef.header,
+                                                    header.getContext()
+                                                )}
+                                                {header.column.getCanFilter() ? (
+                                                    <div>
+                                                        <Filter column={header.column} table={playerTable} />
+                                                    </div>
+                                                ) : null}
+                                            </>
                                         )}
-                                    </td>
+                                    </th>
                                 )
                             })}
                         </tr>
-                    )
-                })}
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td className="p-1">
-                        <IndeterminateCheckbox
-                            {...{
-                                checked: table.getIsAllPageRowsSelected(),
-                                indeterminate: table.getIsSomePageRowsSelected(),
-                                onChange: table.getToggleAllPageRowsSelectedHandler()
-                            }}
-                        />
-                    </td>
-                    <td colSpan={20}>Page Rows ({table.getRowModel().rows.length})</td>
-                </tr>
-                </tfoot>
-            </table>
-            <div className="h-2" />
-            <div className="flex items-center gap-2">
-                <button
-                    className="border rounded p-1"
-                    onClick={() => table.setPageIndex(0)}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    {"<<"}
-                </button>
-                <button
-                    className="border rounded p-1"
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    {"<"}
-                </button>
-                <button
-                    className="border rounded p-1"
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    {">"}
-                </button>
-                <button
-                    className="border rounded p-1"
-                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                    disabled={!table.getCanNextPage()}
-                >
-                    {">>"}
-                </button>
-                <span className="flex items-center gap-1">
-          <div>Page</div>
-          <strong>
-            {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount()}
-          </strong>
-        </span>
-                <span className="flex items-center gap-1">
-          | Go to page:
-          <input
-              type="number"
-              defaultValue={table.getState().pagination.pageIndex + 1}
-              onChange={e => {
-                  const page = e.target.value ? Number(e.target.value) - 1 : 0
-                  table.setPageIndex(page)
-              }}
-              className="border p-1 rounded w-16"
-          />
-        </span>
-                <select
-                    value={table.getState().pagination.pageSize}
-                    onChange={e => {
-                        table.setPageSize(Number(e.target.value))
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
                     ))}
-                </select>
+                    </thead>
+                    <tbody>
+                    {console.log(playerTable.getRowModel())}
+                    {playerTable.getRowModel().rows.map(row => {
+                        return (
+                            <tr key={row.id}>
+                                {row.getVisibleCells().map(cell => {
+                                    return (
+                                        <td key={cell.id}>
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext()
+                                            )}
+                                        </td>
+                                    )
+                                })}
+                            </tr>
+                        )
+                    })}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td className="p-1">
+                            <IndeterminateCheckbox
+                                {...{
+                                    checked: playerTable.getIsAllPageRowsSelected(),
+                                    indeterminate: playerTable.getIsSomePageRowsSelected(),
+                                    onChange: playerTable.getToggleAllPageRowsSelectedHandler()
+                                }}
+                            />
+                        </td>
+                        <td colSpan={20}>Page Rows ({playerTable.getRowModel().rows.length})</td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <div className="h-2" />
+                <div className="flex items-center gap-2">
+                    <button
+                        className="border rounded p-1"
+                        onClick={() => playerTable.setPageIndex(0)}
+                        disabled={!playerTable.getCanPreviousPage()}
+                    >
+                        {"<<"}
+                    </button>
+                    <button
+                        className="border rounded p-1"
+                        onClick={() => playerTable.previousPage()}
+                        disabled={!playerTable.getCanPreviousPage()}
+                    >
+                        {"<"}
+                    </button>
+                    <button
+                        className="border rounded p-1"
+                        onClick={() => playerTable.nextPage()}
+                        disabled={!playerTable.getCanNextPage()}
+                    >
+                        {">"}
+                    </button>
+                    <button
+                        className="border rounded p-1"
+                        onClick={() => playerTable.setPageIndex(playerTable.getPageCount() - 1)}
+                        disabled={!playerTable.getCanNextPage()}
+                    >
+                        {">>"}
+                    </button>
+                    <span className="flex items-center gap-1">
+                        <div>Page</div>
+                        <strong>
+                            {playerTable.getState().pagination.pageIndex + 1} of{" "}
+                            {playerTable.getPageCount()}
+                        </strong>
+                    </span>
+                    <span className="flex items-center gap-1">
+                        | Go to page:
+                        <input
+                        type="number"
+                        defaultValue={playerTable.getState().pagination.pageIndex + 1}
+                        onChange={
+                            e => {const page = e.target.value ? Number(e.target.value) - 1 : 0
+                                playerTable.setPageIndex(page)}
+                        }
+                        className="border p-1 rounded w-16"
+                        />
+                    </span>
+                    <select
+                        value={playerTable.getState().pagination.pageSize}
+                        onChange={e => {
+                            playerTable.setPageSize(Number(e.target.value))
+                        }}
+                    >
+                        {[10, 20, 30, 40, 50].map(pageSize => (
+                            <option key={pageSize} value={pageSize}>
+                                Show {pageSize}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <br />
+                <div>
+                    {Object.keys(rowSelection).length} of{" "}
+                    {playerTable.getPreFilteredRowModel().rows.length} Total Rows Selected
+                </div>
+                <hr />
+                <br />
+                <div>
+                    <button
+                        className="border rounded p-2 mb-2 table-btn"
+                        onClick={() => refreshPlayerData()}
+                    >
+                        Refresh Data
+                    </button>
+                </div>
+                <div>
+                </div>
+                <div>
+                    <button
+                        className="border rounded p-2 mb-2 table-btn"
+                        onClick={() =>
+                                WriteToCSV(playerTable.getSelectedRowModel().flatRows)
+                        }
+                    >
+                        Generate CSV From Selected Rows
+
+                    </button>
+                </div>
             </div>
-            <br />
-            <div>
-                {Object.keys(rowSelection).length} of{" "}
-                {table.getPreFilteredRowModel().rows.length} Total Rows Selected
-            </div>
-            <hr />
-            <br />
-            {/*<div>
-                <button className="border rounded p-2 mb-2" onClick={() => rerender()}>
-                    Force Rerender
-                </button>
-            </div>*/}
-            <div>
-                <button
-                    className="border rounded p-2 mb-2"
-                    onClick={() => refreshData()}
-                >
-                    Refresh Data
-                </button>
-            </div>
-            <div>
-                {/*<button
-                    className="border rounded p-2 mb-2"
-                    onClick={() => console.info("rowSelection", rowSelection)}
-                >
-                    Log `rowSelection` state
-                </button>*/}
-            </div>
-            <div>
-                <button
-                    className="border rounded p-2 mb-2"
-                    onClick={() =>
-                            WriteToCSV(table.getSelectedRowModel().flatRows)
-                    }
-                >
-                    Generate CSV From Selected Rows
-                </button>
+
+            {/* Team Table */}
+            <div className="h-2" id={"team-table"} style={{display: "none"}}>
+                <div className="h-2" />
+                <table style={{}}>
+                    <thead>
+                    {teamTable.getHeaderGroups().map(headerGroup => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map(header => {
+                                return (
+                                    <th key={header.id} colSpan={header.colSpan}>
+                                        {header.isPlaceholder ? null : (
+                                            <>
+                                                {flexRender(
+                                                    header.column.columnDef.header,
+                                                    header.getContext()
+                                                )}
+                                                {header.column.getCanFilter() ? (
+                                                    <div>
+                                                        <Filter column={header.column} table={teamTable} />
+                                                    </div>
+                                                ) : null}
+                                            </>
+                                        )}
+                                    </th>
+                                )
+                            })}
+                        </tr>
+                    ))}
+                    </thead>
+                    <tbody>
+                    {teamTable.getRowModel().rows.map(row => {
+                        return (
+                            <tr key={row.id}>
+                                {row.getVisibleCells().map(cell => {
+                                    return (
+                                        <td key={cell.id}>
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext()
+                                            )}
+                                        </td>
+                                    )
+                                })}
+                            </tr>
+                        )
+                    })}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td className="p-1">
+                            <IndeterminateCheckbox
+                                {...{
+                                    checked: teamTable.getIsAllPageRowsSelected(),
+                                    indeterminate: teamTable.getIsSomePageRowsSelected(),
+                                    onChange: teamTable.getToggleAllPageRowsSelectedHandler()
+                                }}
+                            />
+                        </td>
+                        <td colSpan={20}>Page Rows ({teamTable.getRowModel().rows.length})</td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <div className="h-2" />
+                <div className="flex items-center gap-2">
+                    <button
+                        className="border rounded p-1"
+                        onClick={() => teamTable.setPageIndex(0)}
+                        disabled={!teamTable.getCanPreviousPage()}
+                    >
+                        {"<<"}
+                    </button>
+                    <button
+                        className="border rounded p-1"
+                        onClick={() => teamTable.previousPage()}
+                        disabled={!teamTable.getCanPreviousPage()}
+                    >
+                        {"<"}
+                    </button>
+                    <button
+                        className="border rounded p-1"
+                        onClick={() => teamTable.nextPage()}
+                        disabled={!teamTable.getCanNextPage()}
+                    >
+                        {">"}
+                    </button>
+                    <button
+                        className="border rounded p-1"
+                        onClick={() => teamTable.setPageIndex(teamTable.getPageCount() - 1)}
+                        disabled={!teamTable.getCanNextPage()}
+                    >
+                        {">>"}
+                    </button>
+                    <span className="flex items-center gap-1">
+                        <div>Page</div>
+                        <strong>
+                            {teamTable.getState().pagination.pageIndex + 1} of{" "}
+                            {teamTable.getPageCount()}
+                        </strong>
+                    </span>
+                    <span className="flex items-center gap-1">
+                        | Go to page:
+                        <input
+                            type="number"
+                            defaultValue={teamTable.getState().pagination.pageIndex + 1}
+                            onChange={
+                                e => {const page = e.target.value ? Number(e.target.value) - 1 : 0
+                                    teamTable.setPageIndex(page)}
+                            }
+                            className="border p-1 rounded w-16"
+                        />
+                    </span>
+                    <select
+                        value={teamTable.getState().pagination.pageSize}
+                        onChange={e => {
+                            teamTable.setPageSize(Number(e.target.value))
+                        }}
+                    >
+                        {[10, 20, 30, 40, 50].map(pageSize => (
+                            <option key={pageSize} value={pageSize}>
+                                Show {pageSize}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <br />
+                <div>
+                    {Object.keys(rowSelection).length} of{" "}
+                    {teamTable.getPreFilteredRowModel().rows.length} Total Rows Selected
+                </div>
+                <hr />
+                <br />
+                <div>
+                    <button
+                        className="border rounded p-2 mb-2 table-btn"
+                        onClick={() => refreshTeamData()}
+                    >
+                        Refresh Data
+                    </button>
+                </div>
+                <div>
+                </div>
+                <div>
+                    <button
+                        className="border rounded p-2 mb-2 table-btn"
+                        onClick={() =>
+                            WriteToCSV(teamTable.getSelectedRowModel().flatRows)
+                        }
+                    >
+                        Generate CSV From Selected Rows
+                    </button>
+                </div>
             </div>
         </div>
     )

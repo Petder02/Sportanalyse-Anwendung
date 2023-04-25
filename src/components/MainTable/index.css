@@ -29,3 +29,15 @@ tfoot th {
     font-weight: normal;
     margin: 0 auto;
 }
+
+.table-btn {
+    margin: 0 10px 0 auto;
+    background-color: lightgray;
+    border: 10px solid black;
+}
+
+.table-btn:hover {
+    background-color: #cddcfa;
+    border-radius: 10px;
+    border: 10px solid black;
+}

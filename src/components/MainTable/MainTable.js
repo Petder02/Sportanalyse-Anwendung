@@ -132,55 +132,8 @@ export default function MainTable() {
                         header: () => <span>Red Zone Attempts</span>,
                         footer: props => props.column.id
                     }
-                    /*{
-                        accessorKey: "status",
-                        header: "Status",
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "progress",
-                        header: "Profile Progress",
-                        footer: props => props.column.id
-                    }*/
                 ]
-
-                /* columns: [
-                    {
-                        accessorKey: "season",
-                        cell: info => info.getValue(),
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorFn: row => row.lastName,
-                        id: "seasonType",
-                        cell: info => info.getValue(),
-                        header: () => <span>Last Name</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "team",
-                        header: () => "Age",
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "score",
-                        header: () => <span>Visits</span>,
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "opponentScore",
-                        header: "Status",
-                        footer: props => props.column.id
-                    },
-                    {
-                        accessorKey: "totalScore",
-                        header: "Profile Progress",
-                        footer: props => props.column.id
-                    }
-                ]
-                */
             },
-
         ],
         [tableType]
     )

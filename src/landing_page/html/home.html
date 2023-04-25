@@ -63,20 +63,20 @@
     <div class='container-fluid'>
         <!-- Header and Dark Mode -->
         <br>
-        <button type="button" class="btn btn-dark btn-lg default-fonts float-end" onclick="darkMode()">Dark Mode</button>
+<!--        <button type="button" class="btn btn-dark btn-lg default-fonts float-end" onclick="darkMode()">Dark Mode</button>-->
         <br style="display: block; content: ''; margin-top: 50px;">
         <h1 class="text-center default-fonts">
-            <span class='text-center default-fonts'><b>Sports Master</b></span>
+            <span class='text-center default-fonts'><b>Sportanalyse-Anwendung</b></span>
         </h1>
         <br>
-        <p class = 'text-center default-fonts'>Advanced Analytics, Advanced Insights</p>
+        <p class = 'text-center default-fonts'>Where your sports analytic dreams become reality!</p>
         <br>
         <!-- Sports Page Buttons -->
         <div class="row">
             <!-- Football -->
             <div class='col-md-3 card border border-dark mr-auto mx-auto' id="american-football">
-                <div class="card-body">
-                    <img class="img-center" src="images/american-football.png" width="128" height="128" alt="American Football">
+                <div onclick="redirectToReactApp()" class="card-body">
+                    <img class="img-center" src="../../../public/images/american-football.png" width="128" height="128" alt="American Football">
                     <br>
                     <h3 class="text-center default-fonts">American Football</h3>
                     <!-- Dummy link, add analytics page link here when finished -->
@@ -85,8 +85,8 @@
             </div>
             <!-- Basketball -->
             <div class='col-md-3 card border border-dark mr-auto mx-auto' id="basketball">
-                <div class="card-body">
-                    <img class="img-center" src="images/basketball-ball.png" width="128" height="128" alt="Basketball">
+                <div onclick="redirectToReactApp()" class="card-body">
+                    <img class="img-center" src="../../../public/images/basketball-ball.png" width="128" height="128" alt="Basketball">
                     <br>
                     <h3 class="text-center default-fonts">Basketball</h3>
                     <!-- Dummy link, add analytics page link here when finished -->
@@ -95,8 +95,8 @@
             </div>
             <!-- Baseball -->
             <div class='col-md-3 card border border-dark mr-auto mx-auto' id="baseball">
-                <div class="card-body">
-                    <img class="img-center" src="images/baseball.png" width="128" height="128" alt="Baseball">
+                <div onclick="redirectToReactApp()" class="card-body">
+                    <img class="img-center" src="../../../public/images/baseball.png" width="128" height="128" alt="Baseball">
                     <br>
                     <h3 class="text-center default-fonts">Baseball</h3>
                     <!-- Dummy link, add analytics page link here when finished -->
@@ -106,4 +106,13 @@
         </div>
     </div>
 </body>
+
+<script>
+    function redirectToReactApp() {
+        //Should redirect to the react app once implemented
+        window.location.href = "http://localhost:3000";
+        console.log(window.location.href)
+    }
+</script>
+
 </html>

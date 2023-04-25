@@ -33,7 +33,7 @@
 }
 
 .data-type-selector-trigger {
-  background-color: var(--gray-400);
+  background-color: black;
   border-radius: 50%;
   height: 24px;
   width: 24px;
@@ -67,7 +67,8 @@
 }
 
 .column-name {
-  width: calc(100% - 52px)
+  width: calc(100% - 52px);
+  color: black;
 }
 
 .has-error {
@@ -78,12 +79,12 @@
 }
 
 :global .rdg-header-row {
-  background-color: var(--gray-bg);
+  background-color: var(--gray-300);
   font-weight: normal;
 }
 
 :global .rdg-cell-frozen {
-  background-color: var(--gray-bg);
+  background-color: var(--gray-300);
 }
 
 :global .rdg-selected {
@@ -103,7 +104,7 @@
   font-family: var(--font-family-monospace);
   & .rdg-cell:first-child {
     text-align: center;
-    color: var(--gray-600);
+    color: black;
   }
 }
 

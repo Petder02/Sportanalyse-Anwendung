@@ -26,6 +26,7 @@ import CookieConsent from 'react-cookie-consent'
 import CustomChartLoader from './components/CustomChartLoader'
 import CustomChartWarnModal from './components/CustomChartWarnModal'
 import MainTable from "./components/MainTable"
+// import LandingPage from './components/LandingPage/LandingPage';
 
 // #TODO: i18n
 

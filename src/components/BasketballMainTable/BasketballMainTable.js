@@ -254,7 +254,7 @@ export default function BasketballMainTable() {
     let teamData, setTeamData;
     [teamData, setTeamData] = React.useState(() => makeTeamData(100000));
 
-    //const refreshData = () => setData(() => makeData(100000))
+    // Currently these are not used, but they could be used to update the data
     const refreshPlayerData = () => setPlayerData(() => makePlayerData(100000))
     const refreshTeamData = () => setTeamData(() => makeTeamData(100000))
     
@@ -487,16 +487,6 @@ export default function BasketballMainTable() {
                 <div>
                     <button
                         className="border rounded p-2 mb-2 table-btn"
-                        onClick={() => refreshPlayerData()}
-                    >
-                        Refresh Data
-                    </button>
-                </div>
-                <div>
-                </div>
-                <div>
-                    <button
-                        className="border rounded p-2 mb-2 table-btn"
                         onClick={() =>
                                 WriteToCSV(playerTable.getSelectedRowModel().flatRows)
                         }
@@ -638,16 +628,6 @@ export default function BasketballMainTable() {
                 </div>
                 <hr />
                 <br />
-                <div>
-                    <button
-                        className="border rounded p-2 mb-2 table-btn"
-                        onClick={() => refreshTeamData()}
-                    >
-                        Refresh Data
-                    </button>
-                </div>
-                <div>
-                </div>
                 <div>
                     <button
                         className="border rounded p-2 mb-2 table-btn"

@@ -42,11 +42,11 @@ export default function UploadFile({
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <span>Drag a file here or </span>
-      <Button className={S['browse-button']} color="primary">
-        Browse
-      </Button>
-      <span>a file from your computer</span>
+        <span>Drag the CSV file generated from step (1) or </span>
+        <Button className={S['browse-button']} color="primary">
+            Browse
+        </Button>
+        <span> for a CSV file from your computer.</span>
       {isDragAccept && <p>All files will be accepted</p>}
       {isDragReject && <p>Some files will be rejected</p>}
     </div>

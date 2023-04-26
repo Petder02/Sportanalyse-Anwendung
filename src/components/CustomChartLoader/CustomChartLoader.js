@@ -4,6 +4,7 @@ import { Button, Modal } from 'react-bootstrap'
 import { useDropzone } from 'react-dropzone'
 import { BsCloud, BsUpload } from 'react-icons/bs'
 import styles from './CustomChartLoader.module.scss'
+import S from "../DataLoader/loaders/UploadFile.module.scss";
 
 function LoadFromFile({ loading, load }) {
   function onDrop(acceptedFiles) {
@@ -31,11 +32,11 @@ function LoadFromFile({ loading, load }) {
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <span>Drag a file here or </span>
-      <Button className={styles['browse-button']} color="primary">
+      <span>Drag the CSV file generated from step (1) or </span>
+      <Button className={S['browse-button']} color="primary">
         Browse
       </Button>
-      <span>a file from your computer</span>
+      <span> for a CSV file from your computer.</span>
       <div className={styles.dropin}>
         {isDragAccept && <p>All files will be accepted</p>}
         {isDragReject && <p>Some files will be rejected</p>}

@@ -76,7 +76,7 @@ function DataLoader({
           setLoadingError={setLoadingError}
         />
       ),
-      message: 'Please upload tabular CSV data.',
+      message: 'Please upload the tabular CSV data generated in step (1) or your own CSV file.',
       icon: BsUpload,
       allowedForReplace: true,
     }

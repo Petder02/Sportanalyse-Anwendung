@@ -5,6 +5,7 @@ import DarkMode from "../HeaderButtons/DarkMode";
 import HelpPopUp from "../HeaderButtons/HelpPopUp";
 import GitHubLink from "../HeaderButtons/GitHubLink";
 import StatsHelp from "../HeaderButtons/StatsHelp";
+import BackButton from "../HeaderButtons/BackButton";
 
 export default function Header({ menuItems }) {
 
@@ -22,16 +23,17 @@ export default function Header({ menuItems }) {
 
     return (
         <Navbar bg="white" expand="lg" sticky="top" className={styles.navbar}>
-            <Navbar.Brand href="/"><b>Sportanalyse-</b><span className="text-primary"><i>Anwendung {sportName}</i></span> 1.0.0</Navbar.Brand>
+            <Navbar.Brand href="/"><b>Sportanalyse-</b><span className="text-primary"><i>Anwendung</i></span> 1.0.0 |  <span className="text-primary">  {sportName}</span></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <DarkMode></DarkMode>
+                    <BackButton />
+                    <DarkMode />
                     <StatsHelp
                         url={sportName.includes("football") ? footballHelp : sportName.includes("Basketball") ? basketballHelp : baseballHelp}
-                    ></StatsHelp>
-                    <HelpPopUp></HelpPopUp>
-                    <GitHubLink></GitHubLink>
+                    />
+                    <HelpPopUp />
+                    <GitHubLink />
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

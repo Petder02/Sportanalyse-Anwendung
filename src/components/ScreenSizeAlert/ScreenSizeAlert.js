@@ -48,7 +48,6 @@ function ScreenSizeAlert() {
         <p>
           Please resize your window so that the application can be properly used!
         </p>
-        <p>Touch devices are not fully supported yet.</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={handleClose}>

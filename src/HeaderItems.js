@@ -1,3 +1,4 @@
+// This is depreciated, we did not end up using this set of items and created our own components instead
 const headerItems = [
   {
     label: 'Stats Glossary',

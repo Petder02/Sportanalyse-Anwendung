@@ -12,7 +12,6 @@ import {
     getPaginationRowModel,
     useReactTable
 } from "@tanstack/react-table"
-import fs from "fs";
 
 export default function FootballMainTable() {
     const rerender = React.useReducer(() => ({}), {})[1]

@@ -257,18 +257,20 @@ function FootballPage() {
     return (
         <div className="App">
             <Header menuItems={HeaderItems} />
-            <FootballMainTable></FootballMainTable>
             <CustomChartWarnModal
                 toConfirmCustomChart={toConfirmCustomChart}
                 confirmCustomChartLoad={confirmCustomChartLoad}
                 abortCustomChartLoad={abortCustomChartLoad}
             />
             <div className="app-sections">
-                <Section title={`1. Load your data`} loading={loading}>
+                <Section title={'1. Select your data'} loading={loading}>
+                    <FootballMainTable></FootballMainTable>
+                </Section>
+                <Section title={`2. Load your data`} loading={loading}>
                     <DataLoader {...dataLoader} hydrateFromProject={importProject} />
                 </Section>
                 {data && (
-                    <Section title="2. Choose a chart">
+                    <Section title="3. Choose a chart">
                         <CustomChartLoader
                             isOpen={isModalCustomChartOpen}
                             onClose={toggleModalCustomChart}
@@ -286,7 +288,7 @@ function FootballPage() {
                     </Section>
                 )}
                 {data && currentChart && (
-                    <Section title={`3. Mapping`} loading={mappingLoading}>
+                    <Section title={`4. Mapping`} loading={mappingLoading}>
                         <DataMapping
                             ref={dataMappingRef}
                             dimensions={currentChart.dimensions}
@@ -297,7 +299,7 @@ function FootballPage() {
                     </Section>
                 )}
                 {data && currentChart && (
-                    <Section title="4. Customize">
+                    <Section title="5. Customize your chart">
                         <ChartPreviewWithOptions
                             chart={currentChart}
                             dataset={data.dataset}
@@ -311,7 +313,7 @@ function FootballPage() {
                     </Section>
                 )}
                 {data && currentChart && rawViz && (
-                    <Section title="5. Export">
+                    <Section title="6. Export your chart">
                         <Exporter rawViz={rawViz} exportProject={exportProject} />
                     </Section>
                 )}

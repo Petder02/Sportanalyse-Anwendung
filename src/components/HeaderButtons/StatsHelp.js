@@ -1,9 +1,9 @@
 import React from 'react';
 
-const StatsHelp = () => {
+const StatsHelp = ({url}) => {
     return (
         <div>
-            <a href="https://www.espn.com/nfl/news/story?id=2128923" target="_blank" rel="noopener noreferrer">
+            <a href={url} target="_blank" rel="noopener noreferrer">
                 <button className="modal-btn">Stats Dictionary</button>
             </a>
         </div>

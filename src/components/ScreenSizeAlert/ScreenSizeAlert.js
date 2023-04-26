@@ -37,12 +37,12 @@ function ScreenSizeAlert() {
           <span role="img" aria-label="Party icon">
             🎉
           </span>{' '}
-          Welcome to Sportanalyse-Anwendung 1.0!
+          Welcome to Sportanalyse-Anwendung 1.0.0!
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p className="big">
-          Sportanalyse-Anwendung 1.0 is designed for {size.width >= 768 ? 'slightly ' : ' '}
+          Sportanalyse-Anwendung 1.0.0 is designed for {size.width >= 768 ? 'slightly ' : ' '}
           bigger screens!
         </p>
         <p>

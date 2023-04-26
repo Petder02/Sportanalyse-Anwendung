@@ -3,7 +3,7 @@ import { saveAs } from 'file-saver';
 
 import "./index.css"
 
-import { makePlayerData, makeTeamData } from "./makeData"
+import { makePlayerData, makeTeamData } from "./makeFootballData"
 
 import {
     flexRender,
@@ -14,7 +14,7 @@ import {
 } from "@tanstack/react-table"
 import fs from "fs";
 
-export default function MainTable() {
+export default function FootballMainTable() {
     const rerender = React.useReducer(() => ({}), {})[1]
 
     const [rowSelection, setRowSelection] = React.useState({})

@@ -3,7 +3,9 @@ import "./index.css";
 import footballImage from "./images/american-football.png";
 import basketballImage from "./images/basketball-ball.png";
 import baseballImage from "./images/baseball.png";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import '../../styles/index.scss';
+import '../../styles/_fonts.scss'
 
 const LandingPage = () => {
 
@@ -22,7 +24,7 @@ const LandingPage = () => {
     }
 
     return (
-        <>
+        <div>
             <meta charSet="UTF-8" />
             <title>Home Page</title>
             <link
@@ -43,15 +45,15 @@ const LandingPage = () => {
                 {/* Header */}
                 <br />
                 <br style={{ display: "block", content: '""', marginTop: 50 }} />
-                <h1 className="text-center default-fonts">
-                <span className="text-center default-fonts">
-                    <b>Sportanalyse-Anwendung</b>
+                <h1 className="text-center landing-pg-header">
+                <span className="text-center">
+                    <b>Sportanalyse-Anwendung 1.0.0</b>
                 </span>
                 </h1>
                 <br />
-                <p className="text-center default-fonts">
+                <h4 className="text-center">
                     Where your sports analytic dreams become reality!
-                </p>
+                </h4>
                 <br />
                 {/* Sports Page HeaderButtons */}
                 <div className="row">
@@ -114,7 +116,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

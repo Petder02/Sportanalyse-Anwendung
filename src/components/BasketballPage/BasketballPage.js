@@ -24,8 +24,9 @@ import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
 import CustomChartLoader from '../../components/CustomChartLoader'
 import CustomChartWarnModal from '../../components/CustomChartWarnModal'
-import FootballMainTable from "../FootballMainTable"
-function FootballPage() {
+import BasketballMainTable from "../BasketballMainTable/BasketballMainTable";
+
+function BasketballPage() {
     const [
         customCharts,
         {
@@ -257,7 +258,7 @@ function FootballPage() {
     return (
         <div className="App">
             <Header menuItems={HeaderItems} />
-            <FootballMainTable></FootballMainTable>
+            <BasketballMainTable></BasketballMainTable>
             <CustomChartWarnModal
                 toConfirmCustomChart={toConfirmCustomChart}
                 confirmCustomChartLoad={confirmCustomChartLoad}
@@ -336,4 +337,4 @@ function FootballPage() {
         </div>
     )
 }
-export default FootballPage;
+export default BasketballPage;

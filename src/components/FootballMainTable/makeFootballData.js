@@ -8,18 +8,6 @@ const range = len => {
     return arr
 }
 
-
-const newPerson = () => {
-    return {
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        age: faker.datatype.number(40),
-        visits: faker.datatype.number(1000),
-        progress: faker.datatype.number(100),
-        status: faker.helpers.shuffle(["relationship", "complicated", "single"])[0]
-    }
-}
-
 const genRandTeam = () => {
     const teams = [
         "ARI",

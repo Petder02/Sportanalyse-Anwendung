@@ -27,7 +27,7 @@
 }
 
 #american-football.card:hover {
-    background-color: saddlebrown;
+    background-color: dodgerblue;
 }
 
 #basketball.card:hover {
@@ -36,4 +36,10 @@
 
 #baseball.card:hover {
     background-color: lawngreen;
+}
+
+.landing-pg-header {
+    font-family: Helvetica, serif;
+    font-style: italic;
+    color: #0F52BA
 }

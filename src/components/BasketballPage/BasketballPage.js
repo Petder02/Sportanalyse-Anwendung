@@ -255,10 +255,16 @@ function BasketballPage() {
         []
     )
 
+    // Has the data been selected
+    const [isDataSelected, setIsDataSelected] = useState(false);
+    const onDataSelect = () => {
+        setIsDataSelected(true);
+        console.log(isDataSelected);
+    }
+
     return (
         <div className="App">
             <Header menuItems={HeaderItems} />
-            <BasketballMainTable></BasketballMainTable>
             <CustomChartWarnModal
                 toConfirmCustomChart={toConfirmCustomChart}
                 confirmCustomChartLoad={confirmCustomChartLoad}
@@ -266,11 +272,13 @@ function BasketballPage() {
             />
             <div className="app-sections">
                 <Section title={"1. Select your data"} loading={loading}>
-                    <BasketballMainTable></BasketballMainTable>
+                    <BasketballMainTable onDataSelect={onDataSelect}></BasketballMainTable>
                 </Section>
-                <Section title={`2. Load your data`} loading={loading}>
-                    <DataLoader {...dataLoader} hydrateFromProject={importProject} />
-                </Section>
+                {isDataSelected && (
+                    <Section title={`2. Load your data`} loading={loading}>
+                        <DataLoader {...dataLoader} hydrateFromProject={importProject} />
+                    </Section>
+                )}
                 {data && (
                     <Section title="3. Choose a chart">
                         <CustomChartLoader

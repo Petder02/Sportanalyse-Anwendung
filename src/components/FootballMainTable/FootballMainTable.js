@@ -13,7 +13,7 @@ import {
     useReactTable
 } from "@tanstack/react-table"
 
-export default function FootballMainTable() {
+const FootballMainTable = ({onDataSelect}) => {
     const rerender = React.useReducer(() => ({}), {})[1]
 
     const [rowSelection, setRowSelection] = React.useState({})
@@ -304,7 +304,10 @@ export default function FootballMainTable() {
         const blob = new Blob([csv], { type: 'text/tab-separated-values;charset=utf-8' });
 
         // Save the file
-        saveAs(blob, 'selected_data.csv')
+        saveAs(blob, 'selected_data.csv');
+
+        // Finally, display the next section of the page
+        onDataSelect();
     }
 
     let playerTable = useReactTable({
@@ -397,7 +400,6 @@ export default function FootballMainTable() {
                     ))}
                     </thead>
                     <tbody>
-                    {console.log(playerTable.getRowModel())}
                     {playerTable.getRowModel().rows.map(row => {
                         return (
                             <tr key={row.id}>
@@ -497,27 +499,12 @@ export default function FootballMainTable() {
                     {Object.keys(rowSelection).length} of{" "}
                     {playerTable.getPreFilteredRowModel().rows.length} Total Rows Selected
                 </div>
-                <hr />
-                <br />
-                <div>
-                </div>
-                <div>
-                    <button
-                        className="border rounded p-2 mb-2 table-btn"
-                        onClick={() =>
-                                WriteToCSV(playerTable.getSelectedRowModel().flatRows)
-                        }
-                    >
-                        Generate CSV From Selected Rows
-
-                    </button>
-                </div>
             </div>
 
             {/* Team Table */}
             <div className="h-2" id={"team-table"} style={{display: "none"}}>
                 <div className="h-2" />
-                <table style={{}}>
+                <table>
                     <thead>
                     {teamTable.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
@@ -643,20 +630,19 @@ export default function FootballMainTable() {
                     {Object.keys(rowSelection).length} of{" "}
                     {teamTable.getPreFilteredRowModel().rows.length} Total Rows Selected
                 </div>
-                <hr />
-                <br />
-                <div>
-                </div>
-                <div>
-                    <button
-                        className="border rounded p-2 mb-2 table-btn"
-                        onClick={() =>
-                            WriteToCSV(teamTable.getSelectedRowModel().flatRows)
-                        }
-                    >
-                        Generate CSV From Selected Rows
-                    </button>
-                </div>
+            </div>
+            <hr />
+            <br />
+            {/* Generate CSV Button */}
+            <div>
+                <button
+                    className="border rounded p-2 mb-2 table-btn"
+                    onClick={() => {
+                        WriteToCSV(teamTable.getSelectedRowModel().flatRows);
+                    }}
+                >
+                    Generate CSV From Selected Rows
+                </button>
             </div>
         </div>
     )
@@ -713,3 +699,5 @@ function IndeterminateCheckbox({ indeterminate, className = "", ...rest }) {
         />
     )
 }
+
+export default FootballMainTable;

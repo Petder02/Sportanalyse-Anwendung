@@ -254,6 +254,13 @@ function FootballPage() {
         []
     )
 
+    // Has the data been selected
+    const [isDataSelected, setIsDataSelected] = useState(false);
+    const onDataSelect = () => {
+        setIsDataSelected(true);
+        console.log(isDataSelected);
+    }
+
     return (
         <div className="App">
             <Header menuItems={HeaderItems} />
@@ -264,11 +271,13 @@ function FootballPage() {
             />
             <div className="app-sections">
                 <Section title={'1. Select your data'} loading={loading}>
-                    <FootballMainTable></FootballMainTable>
+                    <FootballMainTable onDataSelect={onDataSelect}></FootballMainTable>
                 </Section>
-                <Section title={`2. Load your data`} loading={loading}>
-                    <DataLoader {...dataLoader} hydrateFromProject={importProject} />
-                </Section>
+                {isDataSelected && (
+                    <Section title={`2. Load your data`} loading={loading}>
+                        <DataLoader {...dataLoader} hydrateFromProject={importProject} />
+                    </Section>
+                )}
                 {data && (
                     <Section title="3. Choose a chart">
                         <CustomChartLoader

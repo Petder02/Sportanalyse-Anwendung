@@ -7,7 +7,7 @@ import BaseballPage from "./components/BaseballPage/BaseballPage";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" id={'app'}>
       <Routes>
         <Route path={"/"} element={<LandingPage />} />
         <Route path={"/american-football"} element={<FootballPage />} />

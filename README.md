@@ -1,7 +1,7 @@
 # Sportanalyse-Anwendung für die Auswertung von Sportdaten.
 ## About
 Created by: Fatih Gurbuz, Gabriel Kwock, Justin Kocur, Nhien Phan, Peter Schlueter, and Vikranth Mallikarjun
-
+ 
 #### Purpose:
 
 Football, baseball, and basketball are three of the most popular sports in the USA with millions of followers for each of them. Given the immense popularity of these sports, there is a huge demand for fans of each team to keep track of the information regarding their team and players, many of which would also love to compare their team to others. Our application would allow the user to retrieve the statistics of their favorite teams (including performance information of  each individual member of the team). Our application can also perform comparative analysis between teams to predict what competitive advantages one team has over another (both user-specified) in the case of a head-to-head match - a feature which would be enjoyed by many sports fans, sports betters, and fantasy players. For sports players in lower-level leagues (e.g., high school and college level sports), our application would allow them to customize their input data of their own team and use it to compare with professional teams. We expect this would serve as a form of benchmark suggestions for high school and college teams to make improvements in both their training and planning.

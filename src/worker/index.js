@@ -24,9 +24,7 @@ export function mapDataInWorker(
   customChart
 ) {
   // TODO: Check lazy loading vs terminate on each time
-  if (!mappingWorker) {
-    mappingWorker = new Worker()
-  }
+  mappingWorker = new Worker()
   let obj = Comlink.wrap(mappingWorker)
   let out = obj.mapData(
     chartName,

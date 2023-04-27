@@ -11,8 +11,6 @@
   white-space: nowrap;
 
   cursor: grab;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
 }
 
 .column-title {
@@ -23,8 +21,6 @@
 
 :global .is-dragging {
   cursor: grabbing;
-  cursor: -webkit-grabbing;
-  cursor: -moz-grabbing;
 }
 
 .data-type-icon {

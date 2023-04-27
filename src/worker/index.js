@@ -6,9 +6,11 @@ let parsingWorker // = new Worker()
 
 export function parseDatasetInWorker(data, dataTypes, parsingOptions) {
   // TODO: Check lazy loading vs terminate on each time
-  if (!parsingWorker) {
-    parsingWorker = new Worker()
-  }
+  // I changed this line, since it appears that this was causing the infinite
+  // loading bug in our case. Not exactly sure why. Basically I am creating a new
+  // service worker for parsing the data each time data is reuploaded. It might
+  // be memory inefficient, but it functions.
+  parsingWorker = new Worker()
   let obj = Comlink.wrap(parsingWorker)
   let out = obj.parseDataset(data, dataTypes, parsingOptions)
   return out

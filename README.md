@@ -1,6 +1,9 @@
 # Sportanalyse-Anwendung für die Auswertung von Sportdaten.
+Make your sports analytics dreams become reality!
 ## About
-Created by: Fatih Gurbuz, Gabriel Kwock, Justin Kocur, Nhien Phan, Peter Schlueter, and Vikranth Mallikarjun
+#### Created by: 
+
+Fatih Ahmet Gurbuz, Gabriel Kwock, Justin Kocur, Nhien Phan, Peter Schlueter, and Vikranth Mallikarjun
  
 #### Purpose:
 
@@ -11,24 +14,31 @@ Football, baseball, and basketball are three of the most popular sports in the U
 To use the application, open this [link](https://gleaming-conkies-bef6e0.netlify.app/).
 
 1. When you've clicked the link above, it'll take you to the home page of the application.
-2. Click the sport you want to analyze (American Football, Basketball, and Baseball).
+2. Click the sport you want to analyze (American Football, Basketball, or Baseball).
 3. Check the box to insert as many players* (or teams) that you want to compare. (You may search for the player's name, team, position, season, or various stats)
 4. Click "Generate CSV from Selected Data" (This will download a CSV onto your local device)
 5. Below the player data, there is a section called "1. Load your data" and upload the CSV generated in step 4. 
 6. Once the data has been uploaded, you can select the chart type (e.g. bar graph, line chart, etc.)
 7. Next, you may select the variables for each section. Make sure to fill the mandatory sections with suitable data (ex. add number data to sections where it requires numbers)
-8. Finally, you may customize the chart's characteristics to your desire. You may save and download this chart.
+8. After selecting these variables, you should see the generated chart in the following section. You you may then customize the chart's characteristics to your desire.
+9. Finally, you can save and download the chart you created in the section that follows.
 
 *Note: Player's data is divided by seasons, so if you want to compare an athlete's stats over the years, you'll need to select multiple years for the same athelete.
 
+## Local Machine Set-up Instructions
 
-## Usage
+First, clone the git repository to your local machine using `git clone`.
 
-yarn install
+Them, run the following command in the location where the repository was cloned to your local machine to install the necessary dependencies for the application to run
 
-yarn start
+`yarn install`
 
-### Requirements
+Finally, to run the application on your local machine, run the following command in the location where the repository was cloned to on your local machine:
+
+`yarn start`
+
+## Requirements for Local Machine Set-up
+Make sure you have the following items installed before downloading the project to your local machine:
 
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (it could be used through the interface of [GitHub Desktop](https://desktop.github.com/))
 - [Node.js](https://nodejs.org/en/)

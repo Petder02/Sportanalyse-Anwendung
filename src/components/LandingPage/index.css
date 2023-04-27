@@ -31,11 +31,11 @@
 }
 
 #basketball.card:hover {
-    background-color: dodgerblue;
+    background-color: #ff8c00;
 }
 
 #baseball.card:hover {
-    background-color: dodgerblue;
+    background-color: #dba9ff;
 }
 
 .landing-pg-header {

@@ -89,7 +89,7 @@ const FootballMainTable = ({onDataSelect}) => {
                     },
                     {
                         accessorKey: "rushingAttempts",
-                        header: () => <span>Rushing Yards</span>,
+                        header: () => <span>Rushing Attempts</span>,
                         footer: props => props.column.id
                     },
                     {

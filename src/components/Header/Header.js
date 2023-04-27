@@ -23,7 +23,7 @@ export default function Header({ menuItems }) {
 
     return (
         <Navbar bg="white" expand="lg" sticky="top" className={styles.navbar}>
-            <Navbar.Brand href="/"><b>Sportanalyse-</b><span className="text-primary"><i>Anwendung</i></span> 1.0.0 |  <span className="text-primary">  {sportName}</span></Navbar.Brand>
+            <Navbar.Brand href="/"><b>Sportanalyse-</b><span style={{color: 'var(--primary)'}}><i>Anwendung</i></span> 1.0.0 |  <span style={{color: 'var(--primary)'}}>  {sportName}</span></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">

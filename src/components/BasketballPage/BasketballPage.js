@@ -262,6 +262,10 @@ function BasketballPage() {
         console.log(isDataSelected);
     }
 
+    // Setting colors for scss
+    document.documentElement.style.setProperty('--primary', '#ff8c00');
+    document.documentElement.style.setProperty('--primary-lighter', '#ffd280');
+
     return (
         <div className="App">
             <Header menuItems={HeaderItems} />

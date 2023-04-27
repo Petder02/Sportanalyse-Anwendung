@@ -39,7 +39,7 @@ tfoot th {
 }
 
 .table-btn:hover {
-    background-color: #cddcfa;
+    background-color: var(--primary-lighter);
     border-radius: 10px;
     border: 10px solid black;
 }

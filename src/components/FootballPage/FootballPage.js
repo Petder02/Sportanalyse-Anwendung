@@ -25,6 +25,7 @@ import CookieConsent from 'react-cookie-consent'
 import CustomChartLoader from '../../components/CustomChartLoader'
 import CustomChartWarnModal from '../../components/CustomChartWarnModal'
 import FootballMainTable from "../FootballMainTable"
+
 function FootballPage() {
     const [
         customCharts,
@@ -260,6 +261,10 @@ function FootballPage() {
         setIsDataSelected(true);
         console.log(isDataSelected);
     }
+
+    // Setting colors for scss
+    document.documentElement.style.setProperty('--primary', 'dodgerblue');
+    document.documentElement.style.setProperty('--primary-lighter', '#cddcfa');
 
     return (
         <div className="App">

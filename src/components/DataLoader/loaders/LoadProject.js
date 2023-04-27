@@ -46,7 +46,7 @@ export default function LoadProject({ onProjectSelected, setLoadingError }) {
     >
       <input {...getInputProps()} />
         <span>Drag the CSV file generated from step (1) or </span>
-        <Button className={S['browse-button']} color="primary">
+        <Button className={S['browse-button']} style={{background: "var(--primary)"}}>
             Browse
         </Button>
         <span> for a CSV file from your computer.</span>

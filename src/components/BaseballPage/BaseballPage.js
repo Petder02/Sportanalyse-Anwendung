@@ -262,6 +262,10 @@ function BaseballPage() {
         console.log(isDataSelected);
     }
 
+    // Setting colors for scss
+    document.documentElement.style.setProperty('--primary', 'indigo');
+    document.documentElement.style.setProperty('--primary-lighter', '#dba9ff');
+
     return (
         <div className="App">
             <Header menuItems={HeaderItems} />

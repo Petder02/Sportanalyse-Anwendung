@@ -263,7 +263,7 @@ function FootballPage() {
     }
 
     // Setting colors for scss
-    document.documentElement.style.setProperty('--primary', 'dodgerblue');
+    document.documentElement.style.setProperty('--primary', '#005cb3');
     document.documentElement.style.setProperty('--primary-lighter', '#cddcfa');
 
     return (

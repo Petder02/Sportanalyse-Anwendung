@@ -484,6 +484,19 @@ const BasketballMainTable = ({onDataSelect}) => {
                     {Object.keys(rowSelection).length} of{" "}
                     {playerTable.getPreFilteredRowModel().rows.length} Total Rows Selected
                 </div>
+                <hr />
+                <br />
+                {/* Generate CSV Button */}
+                <div>
+                    <button
+                        className="border rounded p-2 mb-2 table-btn"
+                        onClick={() => {
+                            WriteToCSV(playerTable.getSelectedRowModel().flatRows);
+                        }}
+                    >
+                        Generate CSV From Selected Rows
+                    </button>
+                </div>
             </div>
 
             {/* Team Table */}
@@ -615,19 +628,19 @@ const BasketballMainTable = ({onDataSelect}) => {
                     {Object.keys(rowSelection).length} of{" "}
                     {teamTable.getPreFilteredRowModel().rows.length} Total Rows Selected
                 </div>
-            </div>
-            <hr />
-            <br />
-            {/* Generate CSV Button */}
-            <div>
-                <button
-                    className="border rounded p-2 mb-2 table-btn"
-                    onClick={() => {
-                        WriteToCSV(teamTable.getSelectedRowModel().flatRows);
-                    }}
-                >
-                    Generate CSV From Selected Rows
-                </button>
+                <hr />
+                <br />
+                {/* Generate CSV Button */}
+                <div>
+                    <button
+                        className="border rounded p-2 mb-2 table-btn"
+                        onClick={() => {
+                            WriteToCSV(teamTable.getSelectedRowModel().flatRows);
+                        }}
+                    >
+                        Generate CSV From Selected Rows
+                    </button>
+                </div>
             </div>
         </div>
     )
